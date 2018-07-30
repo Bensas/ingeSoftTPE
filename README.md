@@ -1,2 +1,2 @@
 # ingeSoftTPE
-Carpeta del Trabajo práctico especial para el trabajo práctico especial
+Carpeta del Trabajo Práctico Especial.
