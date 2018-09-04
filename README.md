@@ -4,7 +4,7 @@
 
 * Líder: Sofía Picasso 
 * Arquitecto: Nicolas Barrera
-* Database Administratior (DBA): Juan Bensadon
+* Database Administrator (DBA): Juan Bensadon
 * Analista: Nicolas Becker
 * Diseñador: Ezequiel Keimel
 * Tester: Ignacio Vidaurreta
