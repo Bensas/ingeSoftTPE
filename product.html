@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TuviTicket</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 60vh;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="fragment_navbar"></div>
+    <!-- Navbar -->
+
+    <!-- Main layout -->
+    <main class="mt-5 pt-4">
+      <div class="container dark-grey-text mt-5">
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+            <img
+              src="/img/conciertos/acdc-river.jpg"
+              class="img-fluid rounded z-depth-4"
+              alt=""
+            />
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+            <!-- Content -->
+            <div class="p-4">
+              <div class="mb-3">
+                <a href=""> <span class="badge purple mr-1">AC/DC</span> </a>
+                <a href=""> <span class="badge blue mr-1">Concierto</span> </a>
+                <a href="">
+                  <span class="badge red mr-1">Estadio River Plate</span>
+                </a>
+              </div>
+
+              <p class="lead">
+                <span class="mr-1"> <del>$3700</del> </span> <span>$2500</span>
+              </p>
+
+              <p class="lead font-weight-bold">AC/DC: The Razor's Edge</p>
+
+              <p>
+                AC/DC vuelve a la Argentina después de ocho años para repetir
+                uno de sus espectáculos más memorables.
+              </p>
+
+              <form class="d-flex justify-content-left">
+                <!-- Default input -->
+                <input
+                  type="number"
+                  value="1"
+                  aria-label="Search"
+                  class="form-control"
+                  style="width: 100px"
+                />
+                <button class="btn btn-primary btn-md my-0 p" type="submit">
+                  Añadir al carrito <i class="fa fa-shopping-cart ml-1"></i>
+                </button>
+              </form>
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <hr />
+
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-md-6 text-center">
+            <h4 class="my-4 h4">Más información</h4>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <iframe
+              width="325"
+              height="280"
+              frameborder="0"
+              src="https://www.bing.com/maps/embed?h=280&w=325&cp=-34.545320000000004~-58.44973999999999&lvl=13&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
+              scrolling="no"
+            >
+            </iframe>
+            <div
+              style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"
+            >
+              <a
+                id="dirMapLink"
+                href="https://www.bing.com/maps/directions?cp=-34.545320000000004~-58.44973999999999&amp;sty=r&amp;lvl=13&amp;rtp=~pos.-34.545320000000004_-58.44973999999999____&amp;FORM=MBEDLD"
+                target="_blank"
+                >Obtener indicaciones</a
+              >
+            </div>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </main>
+    <!-- Main layout -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      $(function() {
+        $("#fragment_navbar").load("/fragments/navbar.html");
+      });
+    </script>
+  </body>
+</html>
