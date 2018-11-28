@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>TuviTicket</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="css/snackbar.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="css/selectize.default.css" />
+
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet" />
+
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .bg {
+      background-image: url("img/event-bg.jpg");
+
+      height: 100vh;
+
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div id="fragment_navbar"></div>
+
+  <div id="background" class="bg" />
+
+  <br/>
+
+  <main>
+    <div class="container">
+      <!-- Section: Main info -->
+      <section class="mt-5 wow fadeIn">
+        <div class="row">
+
+          <!-- Grid column -->
+          <div class="col mb-4 white-text text-center text-md-center">
+            <h1 class="display-4 font-weight-bold">
+              <i class="fa ml-2" aria-hidden="true"></i> Crear evento
+            </h1>
+
+            <hr class="hr-light" />
+
+            <p>
+              <strong>Introduce a continuación la información necesaria para crear su evento.</strong>
+            </p>
+
+          </div>
+        </div>
+
+        <div class="row">
+
+          <!-- Grid column -->
+          <div class="col">
+            <!-- Card -->
+            <div class="card">
+              <!-- Card content -->
+              <div id="form_reg" class="card-body">
+                <!-- Form -->
+                <form name="">
+                  <!-- Heading -->
+                  <h3 class="dark-grey-text text-center">
+                      <strong>Información del evento</strong></h3>
+                  <hr/>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-navicon prefix grey-text"></i>
+                    <input type="text" id="form_name" name="name" class="form-control validate" />
+                    <label data-error="Este campo es obligatorio" for="form_name">Nombre del evento</label>
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-map-marker prefix grey-text"></i>
+                    <input type="text" id="form_location" name="location" class="form-control validate" />
+                    <label data-error="Este campo es obligatorio" for="form_location">Ubicación</label>
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    <textarea type="text" id="form_description" class="md-textarea form-control"></textarea>
+                    <label for="form_description">Descripción del evento</label>
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-ticket prefix grey-text"></i>
+                    <input type="number" id="form_quantity" name="quantity" class="form-control validate" />
+                    <label data-error="Cantidad inválida" for="form_quantity">Cantidad de entradas</label>
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-tag prefix grey-text"></i>
+                    <input type="number" id="form_price" name="price" class="form-control validate" />
+                    <label data-error="Precio inválido" for="form_price">Precio por entrada</label>
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-calendar prefix grey-text"></i>
+                    <input type="date" id="form_date" name="date" class="form-control validate" />
+                  </div>
+
+                  <div class="md-form mb-5">
+                    <i class="fa fa-clock-o prefix grey-text"></i>
+                    <input type="time" id="form_time" name="time" class="form-control validate" />
+                  </div>
+
+                  <div class="text-center">
+                    <button id="btn_register" class="btn btn-indigo">
+                        Registrar evento</button>
+                  </div>
+                </form>
+                <!-- Form -->
+              </div>
+            </div>
+            <!-- /.Card -->
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <br/>
+  <!-- Main layout -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $(this).scrollTop(0);
+    });
+
+    $(function() {
+      $("#fragment_navbar").load("/fragments/navbar.html", function() {
+        $("#navbar").removeClass("bg-dark");
+        $("#navitem_inicio").addClass("active");
+        $("#navitem_inicio")
+          .children("a")
+          .attr("href", "#");
+        $("#navbar_title").attr("href", "#");
+      });
+    });
+
+    /*$("form").on("submit", function(event) {
+      event.preventDefault();
+
+      $.post("/scripts/signup.php", $(this).serialize())
+        .done(function(msg) {
+          alert("Registro completado con éxito.");
+          window.location.replace("/index.html");
+        })
+        .fail(function(xhr, status, error) {
+          alert(error);
+        });
+    });*/
+  </script>
+</body>
+
+</html>
