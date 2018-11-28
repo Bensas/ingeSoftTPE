@@ -200,8 +200,14 @@
 
         $.post("/scripts/signup.php", $(this).serialize())
           .done(function(msg) {
-            alert("Registro completado con éxito.");
-            window.location.replace("/index.html");
+            var resp = JSON.parse(msg);
+            if (resp.status == 0){
+              alert("Registro completado con éxito.");
+              window.location.replace("/index.html");
+            } else{
+              alert("Hubo un problema al registrar la cuenta.");
+              window.location.replace("/index.html");
+            } 
           })
           .fail(function(xhr, status, error) {
             alert(error);

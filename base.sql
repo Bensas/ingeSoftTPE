@@ -14,6 +14,7 @@ CREATE TABLE `users` (
   `surname` varchar(45) DEFAULT NULL,
   `mail` varchar(45) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
+  `confirmationKey` varchar(32) DEFAULT NULL,
   `usertype` int(1) DEFAULT '0',
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -22,4 +23,3 @@ CREATE TABLE `users` (
 #
 # Data for table "users"
 #
-

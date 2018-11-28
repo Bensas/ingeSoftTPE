@@ -1,8 +1,8 @@
 <?php
 
 $host = 'localhost';
-$user = 'nico';
-$password = 'scogar';
+$user = 'root';
+$password = '';
 $dbname = 'inge';
 
 $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
