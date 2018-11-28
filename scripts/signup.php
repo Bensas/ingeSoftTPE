@@ -25,7 +25,7 @@
         $e = sha1($email); // For verification purposes
         $to = trim($email);
 
-        $baseAddress = $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']);
+        $baseAddress = $_SERVER['SERVER_NAME'];
  
         $subject = "Bienvenido a TuviTicket!";
  
