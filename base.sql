@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.1.26-MariaDB-0+deb9u1)
-# Date: 2018-11-27 05:07:18
+# Date: 2018-11-30 05:55:21
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -23,3 +23,4 @@ CREATE TABLE `users` (
 #
 # Data for table "users"
 #
+

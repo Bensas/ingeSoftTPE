@@ -51,11 +51,15 @@
             class="nav-link dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
-            aria-expanded="false">¡Hola, <strong id="user-name"></strong>!</a>
+            aria-expanded="false"
+            >¡Hola, <strong id="user-name"></strong>!</a
+          >
           <div class="dropdown-menu dropdown-primary">
             <a class="dropdown-item" href="#">Mi perfil</a>
             <a class="dropdown-item" href="/post-event.html">Crear evento</a>
-            <a class="dropdown-item" href="/scripts/logout.php">Cerrar sesión</a>
+            <a class="dropdown-item" href="/scripts/session/logout.php"
+              >Cerrar sesión</a
+            >
           </div>
         </li>
         <li class="nav-item logged-false">
@@ -66,7 +70,8 @@
         <li class="nav-item" id="navitem_cart">
           <a
             class="nav-link waves-effect border border-light rounded"
-            href="cart.html">
+            href="cart.html"
+          >
             <span class="badge red z-depth-1 mr-1"> 6 </span>
             <i class="fa fa-shopping-cart"></i>
             <span class="clearfix d-none d-sm-inline-block"> Carrito </span>
@@ -79,7 +84,7 @@
 
 <script>
   $(function() {
-    $.get("scripts/checklogin.php", function(data) {
+    $.get("/scripts/session/checklogin.php", function(data) {
       var resp = JSON.parse(data);
       if (resp.logged) {
         $("#user-name").html(resp.name.toUpperCase());

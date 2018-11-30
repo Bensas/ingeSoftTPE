@@ -8,6 +8,100 @@
     />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>TuviTicket</title>
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -48,9 +142,9 @@
           <!-- Grid column -->
           <div class="col-md-6 mb-4">
             <img
-              src="/img/conciertos/acdc-river.jpg"
+              id="eventCover"
               class="img-fluid rounded z-depth-4"
-              alt=""
+              alt="Imagen de portada"
             />
           </div>
           <!-- Grid column -->
@@ -60,37 +154,71 @@
             <!-- Content -->
             <div class="p-4">
               <div class="mb-3">
-                <a href=""> <span class="badge purple mr-1">AC/DC</span> </a>
-                <a href=""> <span class="badge blue mr-1">Concierto</span> </a>
-                <a href="">
-                  <span class="badge red mr-1">Estadio River Plate</span>
+                <a href="#">
+                  <span class="badge purple mr-1" id="eventArtistName"
+                    >Artista</span
+                  >
+                </a>
+                <a href="#">
+                  <span class="badge blue mr-1" id="eventTypeName">Tipo</span>
+                </a>
+                <a href="#">
+                  <span class="badge red mr-1" id="eventLocation"
+                    >Ubicación</span
+                  >
                 </a>
               </div>
 
               <p class="lead">
-                <span class="mr-1"> <del>$3700</del> </span> <span>$2500</span>
+                <!-- <span class="mr-1"> <del>$3700</del> </span> -->
+                <span id="eventTicketPrice">Precio</span>
               </p>
 
-              <p class="lead font-weight-bold">AC/DC: The Razor's Edge</p>
-
-              <p>
-                AC/DC vuelve a la Argentina después de ocho años para repetir
-                uno de sus espectáculos más memorables.
+              <p id="eventName" class="lead font-weight-bold">
+                Nombre del evento
               </p>
 
-              <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <input
-                  type="number"
-                  value="1"
-                  aria-label="Search"
-                  class="form-control"
-                  style="width: 100px"
-                />
-                <button class="btn btn-primary btn-md my-0 p" type="submit">
-                  Añadir al carrito <i class="fa fa-shopping-cart ml-1"></i>
-                </button>
-              </form>
+              <p id="eventDescription">Descripción del evento.</p>
+
+              <div id="divFull">
+                <span class="font-weight-bold red-text"
+                  >Todas las localidades para este evento se encuentran
+                  agotadas.</span
+                >
+              </div>
+
+              <div id="divBuy">
+                <form>
+                  <div class="row">
+                    <div class="col-6">Función:</div>
+                    <div class="col-6">
+                      <select id="eventInstances" style="width: 100%;">
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">Cantidad de entradas:</div>
+                    <div class="col-6">
+                      <input
+                        type="number"
+                        value="1"
+                        aria-label="Cantidad de entradas"
+                        class="form-control"
+                        id="txtCantTickets"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    id="btnAddToCart"
+                    class="btn btn-primary btn-md my-0 p"
+                    type="submit"
+                  >
+                    Añadir al carrito <i class="fa fa-shopping-cart ml-1"></i>
+                  </button>
+                </form>
+              </div>
             </div>
             <!-- Content -->
           </div>
@@ -114,24 +242,33 @@
         <div class="row wow fadeIn">
           <!-- Grid column -->
           <div class="col-lg-4 col-md-12 mb-4">
-            <iframe
-              width="325"
-              height="280"
-              frameborder="0"
-              src="https://www.bing.com/maps/embed?h=280&w=325&cp=-34.545320000000004~-58.44973999999999&lvl=13&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
-              scrolling="no"
-            >
-            </iframe>
             <div
-              style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"
-            >
-              <a
-                id="dirMapLink"
-                href="https://www.bing.com/maps/directions?cp=-34.545320000000004~-58.44973999999999&amp;sty=r&amp;lvl=13&amp;rtp=~pos.-34.545320000000004_-58.44973999999999____&amp;FORM=MBEDLD"
-                target="_blank"
-                >Obtener indicaciones</a
+              id="myMap"
+              style="position:relative;width:100%;height:300px;"
+            ></div>
+
+            <!-- style="position:relative;width:325px;height:300px;" -->
+
+            <!--
+              <iframe
+                width="325"
+                height="280"
+                frameborder="0"
+                src="https://www.bing.com/maps/embed?h=280&w=325&cp=-34.545320000000004~-58.44973999999999&lvl=13&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
+                scrolling="no"
               >
-            </div>
+              </iframe>
+              <div
+                style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"
+              >
+                <a
+                  id="dirMapLink"
+                  href="https://www.bing.com/maps/directions?cp=-34.545320000000004~-58.44973999999999&amp;sty=r&amp;lvl=13&amp;rtp=~pos.-34.545320000000004_-58.44973999999999____&amp;FORM=MBEDLD"
+                  target="_blank"
+                  >Obtener indicaciones</a
+                >
+              </div>
+            -->
           </div>
           <!-- Grid column -->
         </div>
@@ -149,6 +286,15 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- Bing Maps -->
+    <script
+      type="text/javascript"
+      src="http://www.bing.com/api/maps/mapcontrol?callback=onMapLoad&key=AuN31wXokYBB_JTNXvIzWBqfpf3bz8Vf9MTj62aKxt5IxBtaFjn-krvyOw8oDZgu"
+      async
+      defer
+    ></script>
+
     <!-- Initializations -->
     <script type="text/javascript">
       // Animations initialization
@@ -156,8 +302,166 @@
     </script>
 
     <script>
+      var mapData = null;
+      var eventId;
+      var isEventFull = true;
+
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      function onMapLoad() {
+        if (mapData != null) {
+          renderMap(
+            mapData.lat,
+            mapData.long,
+            mapData.locationName,
+            mapData.locationAddress
+          );
+        } else {
+          setTimeout(onMapLoad, 250);
+        }
+      }
+
+      function renderMap(lat, long, caption, address) {
+        var map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
+        map.setView({
+          center: new Microsoft.Maps.Location(lat, long),
+          zoom: 15
+        });
+
+        map.setOptions({
+          maxZoom: 17,
+          minZoom: 13,
+          showZoomButtons: false,
+          showScalebar: false,
+          showMapTypeSelector: false,
+          enableClickableLogo: false,
+          allowInfoboxOverflow: true
+        });
+
+        var center = map.getCenter();
+
+        var pushpin = new Microsoft.Maps.Pushpin(center, {
+          title: caption,
+          subTitle: address,
+          icon: "https://www.bingmapsportal.com/Content/images/poi_custom.png",
+          anchor: new Microsoft.Maps.Point(12, 39)
+        });
+
+        var infobox = new Microsoft.Maps.Infobox(center, {
+          title: caption,
+          description: address,
+          visible: false,
+          actions: [
+            {
+              label: "Obtener indicaciones",
+              eventHandler: function() {
+                alert("¿Como carajo llego acá sin pasar por Mordor?");
+              }
+            }
+          ]
+        });
+        infobox.setMap(map);
+        Microsoft.Maps.Events.addHandler(pushpin, "click", function() {
+          infobox.setOptions({ visible: true });
+        });
+
+        map.entities.push(pushpin);
+      }
+
+      function formatTwoDigits(int) {
+        return ("0" + int).slice(-2);
+      }
+
+      function formatDate(date) {
+        return (
+          formatTwoDigits(date.getDate()) +
+          "/" +
+          formatTwoDigits(date.getMonth()) +
+          "/" +
+          date.getFullYear()
+        );
+      }
+
+      function formatTime(date) {
+        return (
+          formatTwoDigits(date.getHours()) +
+          ":" +
+          formatTwoDigits(date.getMinutes())
+        );
+      }
+
       $(function() {
         $("#fragment_navbar").load("/fragments/navbar.html");
+
+        eventId = getUrlParameter("eventId");
+
+        $.get("/scripts/event/load.php", { eventId: eventId }, function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 1) {
+            alert("El evento solicitado no existe.");
+            return;
+          }
+
+          var eventData = resp.eventData;
+          var eventInstances = resp.eventInstances;
+
+          mapData = {
+            lat: eventData.lat,
+            long: eventData.long,
+            locationName: eventData.locationName,
+            locationAddress: eventData.locationAddress
+          };
+
+          $("#eventCover").attr(
+            "src",
+            "/img/events/" + eventId + "/" + eventData.imgCover
+          );
+
+          $eventDropdown = $("#eventInstances");
+
+          for (var i = 0; i < eventInstances.length; i++) {
+            var date = new Date(
+              eventInstances[i].date + " " + eventInstances[i].time
+            );
+            var option;
+            if (eventInstances[i].isFull == true)
+              option = $("<option />")
+                .val(eventInstances[i].id)
+                .text(formatDate(date) + ", " + formatTime(date) + " (Agotada)")
+                .attr("disabled", "disabled");
+            else {
+              option = $("<option />")
+                .val(eventInstances[i].id)
+                .text(formatDate(date) + ", " + formatTime(date));
+              isEventFull = false;
+            }
+
+            $eventDropdown.append(option);
+          }
+
+          if (isEventFull) {
+            $("#txtCantTickets").prop("disabled", true);
+            $("#btnAddToCart").prop("disabled", true);
+            $("#divBuy").hide();
+            $("#divFull").show();
+          } else {
+            $("#divFull").hide();
+          }
+
+          $("#eventArtistName").html(eventData.artistName);
+          $("#eventTypeName").html(eventData.eventType);
+          $("#eventLocation").html(eventData.locationName);
+          $("#eventTicketPrice").html("$" + eventData.ticketPrice);
+          $("#eventName").html(eventData.title);
+          $("#eventDescription").html(eventData.description);
+        });
       });
     </script>
   </body>
