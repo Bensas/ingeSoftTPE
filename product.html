@@ -118,7 +118,7 @@
       body,
       header,
       .carousel {
-        height: 60vh;
+        height: 300px;
       }
 
       @media (min-width: 800px) and (max-width: 850px) {
@@ -180,44 +180,52 @@
 
               <p id="eventDescription">Descripción del evento.</p>
 
-              <div id="divFull">
+              <div id="divLogin" class="logged-false">
                 <span class="font-weight-bold red-text"
-                  >Todas las localidades para este evento se encuentran
-                  agotadas.</span
+                  >Inicia sesión para adquirir entradas para éste y cientos de
+                  fantásticos eventos.</span
                 >
+                <br /><br />
+                <a class="btn btn-primary btn-md my-0 p" href="/login.html">
+                  <i class="fa fa-user-circle ml-1"></i>&emsp;Ingresar
+                </a>
               </div>
 
-              <div id="divBuy">
-                <form>
-                  <div class="row">
-                    <div class="col-6">Función:</div>
-                    <div class="col-6">
-                      <select id="eventInstances" style="width: 100%;">
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-6">Cantidad de entradas:</div>
-                    <div class="col-6">
-                      <input
-                        type="number"
-                        value="1"
-                        aria-label="Cantidad de entradas"
-                        class="form-control"
-                        id="txtCantTickets"
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    id="btnAddToCart"
-                    class="btn btn-primary btn-md my-0 p"
-                    type="submit"
+              <div class="logged-true">
+                <div id="divFull">
+                  <span class="font-weight-bold red-text"
+                    >Todas las localidades para este evento se encuentran
+                    agotadas.</span
                   >
-                    Añadir al carrito <i class="fa fa-shopping-cart ml-1"></i>
-                  </button>
-                </form>
+                </div>
+                <div id="divBuy">
+                  <form>
+                    <div class="row">
+                      <div class="col-6">Función:</div>
+                      <div class="col-6">
+                        <select id="eventInstances" style="width: 100%;">
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6">Cantidad de entradas:</div>
+                      <div class="col-6">
+                        <input
+                          type="number"
+                          value="1"
+                          aria-label="Cantidad de entradas"
+                          class="form-control"
+                          id="txtCantTickets"
+                        />
+                      </div>
+                    </div>
+
+                    <a id="btnAddToCart" class="btn btn-primary btn-md my-0 p">
+                      Comprar <i class="fa fa-shopping-cart ml-1"></i>
+                    </a>
+                  </form>
+                </div>
               </div>
             </div>
             <!-- Content -->
@@ -246,29 +254,48 @@
               id="myMap"
               style="position:relative;width:100%;height:300px;"
             ></div>
-
-            <!-- style="position:relative;width:325px;height:300px;" -->
-
-            <!--
-              <iframe
-                width="325"
-                height="280"
-                frameborder="0"
-                src="https://www.bing.com/maps/embed?h=280&w=325&cp=-34.545320000000004~-58.44973999999999&lvl=13&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
-                scrolling="no"
+          </div>
+          <div class="col-lg-8 col-md-12 mb-4">
+            <!-- Carousel Wrapper -->
+            <div
+              id="carousel-img"
+              class="carousel slide carousel-fade"
+              data-ride="carousel"
+            >
+              <!-- Indicators -->
+              <ol class="carousel-indicators"></ol>
+              <!-- /.Indicators -->
+              <!-- Slides -->
+              <div class="carousel-inner" role="listbox"></div>
+              <!-- /.Slides -->
+              <!-- Controls -->
+              <a
+                class="carousel-control-prev"
+                href="#carousel-img"
+                role="button"
+                data-slide="prev"
               >
-              </iframe>
-              <div
-                style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;"
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carousel-img"
+                role="button"
+                data-slide="next"
               >
-                <a
-                  id="dirMapLink"
-                  href="https://www.bing.com/maps/directions?cp=-34.545320000000004~-58.44973999999999&amp;sty=r&amp;lvl=13&amp;rtp=~pos.-34.545320000000004_-58.44973999999999____&amp;FORM=MBEDLD"
-                  target="_blank"
-                  >Obtener indicaciones</a
-                >
-              </div>
-            -->
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Siguiente</span>
+              </a>
+              <!-- /.Controls -->
+            </div>
+            <!-- /.Carousel Wrapper -->
           </div>
           <!-- Grid column -->
         </div>
@@ -276,6 +303,66 @@
       </div>
     </main>
     <!-- Main layout -->
+
+    <!-- Modal success -->
+    <!-- Central Modal Medium Success -->
+    <div
+      class="modal fade"
+      id="modalSuccess"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-notify modal-success" role="document">
+        <!-- Content -->
+        <div class="modal-content">
+          <!-- Header -->
+          <div class="modal-header">
+            <p class="heading lead">¡Entradas adquiridas con éxito!</p>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+            <div class="text-center">
+              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+              <p>
+                Diríjase a Sus TuviTickets para visualizar e imprimir sus
+                entradas. Puede hacerlo en cualquier momento por medio del botón
+                ubicado junto a su nombre en la barra de navegación.
+              </p>
+              <p>¡Disfrute el espectáculo!</p>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer justify-content-center">
+            <a type="button" class="btn btn-success" href="/cart.html"
+              >Ir a Mis TuviTickets
+              <i class="fa fa-shopping-cart ml-1 text-white"></i
+            ></a>
+            <a
+              type="button"
+              class="btn btn-outline-success waves-effect"
+              data-dismiss="modal"
+              >Seguir explorando</a
+            >
+          </div>
+        </div>
+        <!-- /.Content -->
+      </div>
+    </div>
+    <!-- Central Modal Medium Success -->
+    <!-- Modal success -->
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
@@ -286,6 +373,8 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Nuestro JS -->
+    <script type="text/javascript" src="js/myFunc.js"></script>
 
     <!-- Bing Maps -->
     <script
@@ -304,16 +393,6 @@
     <script>
       var mapData = null;
       var eventId;
-      var isEventFull = true;
-
-      function getUrlParameter(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-        var results = regex.exec(location.search);
-        return results === null
-          ? ""
-          : decodeURIComponent(results[1].replace(/\+/g, " "));
-      }
 
       function onMapLoad() {
         if (mapData != null) {
@@ -375,33 +454,7 @@
         map.entities.push(pushpin);
       }
 
-      function formatTwoDigits(int) {
-        return ("0" + int).slice(-2);
-      }
-
-      function formatDate(date) {
-        return (
-          formatTwoDigits(date.getDate()) +
-          "/" +
-          formatTwoDigits(date.getMonth()) +
-          "/" +
-          date.getFullYear()
-        );
-      }
-
-      function formatTime(date) {
-        return (
-          formatTwoDigits(date.getHours()) +
-          ":" +
-          formatTwoDigits(date.getMinutes())
-        );
-      }
-
-      $(function() {
-        $("#fragment_navbar").load("/fragments/navbar.html");
-
-        eventId = getUrlParameter("eventId");
-
+      function fillEventData() {
         $.get("/scripts/event/load.php", { eventId: eventId }, function(data) {
           var resp = JSON.parse(data);
           if (resp.status == 1) {
@@ -425,6 +478,10 @@
           );
 
           $eventDropdown = $("#eventInstances");
+
+          $eventDropdown.find("option").remove();
+
+          var isEventFull = true;
 
           for (var i = 0; i < eventInstances.length; i++) {
             var date = new Date(
@@ -453,6 +510,7 @@
             $("#divFull").show();
           } else {
             $("#divFull").hide();
+            $("#divBuy").show();
           }
 
           $("#eventArtistName").html(eventData.artistName);
@@ -462,7 +520,111 @@
           $("#eventName").html(eventData.title);
           $("#eventDescription").html(eventData.description);
         });
+      }
+
+      $(function() {
+        $("#fragment_navbar").load("/fragments/navbar.html");
+
+        eventId = getUrlParameter("eventId");
+
+        fillEventData();
+
+        loadCarousel();
+
+        $("#btnAddToCart").click(function() {
+          $.post("/scripts/event/addtocart.php", {
+            eventId: eventId,
+            eventInstanceId: $("#eventInstances").val(),
+            ticketAmount: $("#txtCantTickets").val()
+          })
+            .done(function(msg) {
+              var resp = JSON.parse(msg);
+              if (resp.status == 0) {
+                updateTicketCount();
+                $("#modalSuccess").modal("show");
+                fillEventData();
+              } else if (resp.status == 1) {
+                alert(
+                  "No hay suficientes entradas disponibles como para satisfacer su pedido."
+                );
+              } else {
+                alert(
+                  "Ha ocurrido un error ejecutando su pedido. Por favor, contacte a un administrador."
+                );
+              }
+            })
+            .fail(function(xhr, status, error) {
+              alert(error);
+            });
+        });
       });
+
+      function loadCarousel() {
+        $.get("/scripts/event/getmedia.php", { eventId: eventId }, function(
+          data
+        ) {
+          var resp = JSON.parse(data);
+          $carousel = $("#carousel-img");
+          for (let i = 0; i < resp.images.length; i++) {
+            $carousel
+              .children(".carousel-indicators")
+              .append(
+                "<li data-target='#carousel-img' data-slide-to='" + i + "' />"
+              );
+
+            $carousel.children(".carousel-inner").append(
+              `
+                                                                                          <div class="carousel-item">
+                                                                                          <img
+                                                                                          class="d-block w-100"
+                                                                                          src="/img/events/` +
+                eventId +
+                `/` +
+                resp.images[i] +
+                `"
+                                                                                          />
+                                                                                          </div>`
+            );
+          }
+
+          for (let i = 0; i < resp.videos.length; i++) {
+            $carousel
+              .children(".carousel-indicators")
+              .append(
+                "<li data-target='#carousel-img' data-slide-to='" +
+                  (i + resp.images.length) +
+                  "' />"
+              );
+
+            $carousel.children(".carousel-inner").append(
+              `<div class="carousel-item">
+                                        <div class="view">
+                                          <!-- Video source -->
+                                <video class="video-intro" autoplay loop muted>
+                                            <source src="/img/events/` +
+                eventId +
+                "/" +
+                resp.videos[i] +
+                `" />
+                                          </video>
+                                        </div>
+                                      </div>`
+            );
+          }
+
+          $carousel
+            .children(".carousel-indicators")
+            .children("li")
+            .first()
+            .addClass("active");
+
+          $carousel
+            .children(".carousel-inner")
+            .children(".carousel-item")
+            .first()
+            .addClass("active");
+        });
+      }
     </script>
   </body>
 </html>

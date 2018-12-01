@@ -46,6 +46,11 @@
 
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item logged-false">
+          <a href="/login.html" class="nav-link">
+            <i class="fa fa-user-circle" aria-hidden="true"></i> Ingresar
+          </a>
+        </li>
         <li class="nav-item dropdown logged-true">
           <a
             class="nav-link dropdown-toggle"
@@ -62,19 +67,18 @@
             >
           </div>
         </li>
-        <li class="nav-item logged-false">
-          <a href="/login.html" class="nav-link">
-            <i class="fa fa-user-circle" aria-hidden="true"></i> Ingresar
-          </a>
-        </li>
-        <li class="nav-item" id="navitem_cart">
+        <li class="nav-item logged-true" id="navitem_cart">
           <a
             class="nav-link waves-effect border border-light rounded"
             href="cart.html"
           >
-            <span class="badge red z-depth-1 mr-1"> 6 </span>
+            <span class="badge red z-depth-1 mr-1" id="validTicketCount">
+              0
+            </span>
             <i class="fa fa-shopping-cart"></i>
-            <span class="clearfix d-none d-sm-inline-block"> Carrito </span>
+            <span class="clearfix d-none d-inline-block">
+              Mis TuviTickets
+            </span>
           </a>
         </li>
       </ul>
@@ -83,6 +87,17 @@
 </nav>
 
 <script>
+  function updateTicketCount() {
+    $.get("/scripts/event/validticketcount.php", function(data) {
+      var resp = JSON.parse(data);
+      if (resp.status == 0) {
+        $("#validTicketCount").html(resp.ticketCount + " ");
+      } else {
+        alert("Error. Contacte a un administrador.");
+      }
+    });
+  }
+
   $(function() {
     $.get("/scripts/session/checklogin.php", function(data) {
       var resp = JSON.parse(data);
@@ -90,6 +105,7 @@
         $("#user-name").html(resp.name.toUpperCase());
         $(".logged-true").show();
         $(".logged-false").hide();
+        updateTicketCount();
       } else {
         $(".logged-true").hide();
         $(".logged-false").show();
