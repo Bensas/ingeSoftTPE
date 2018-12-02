@@ -167,7 +167,7 @@
                 >
               </p>
 
-              <a href="/login.html" class="btn btn-indigo btn-lg"
+              <a id="btn-login" class="btn btn-indigo btn-lg"
                 >¿Ya tienes una cuenta? ¡Inicia sesión!
               </a>
             </div>
@@ -274,6 +274,10 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- Nuestro JS -->
+    <script type="text/javascript" src="js/myFunc.js"></script>
+
     <!-- Initializations -->
     <script type="text/javascript">
       // Animations initialization
@@ -288,6 +292,14 @@
         });
       });
 
+      $("#btn-login").click(function() {
+        var prevUrl = getUrlParameter("prev");
+        if (prevUrl != "")
+          window.location.href =
+            "/login.html?prev=" + encodeURIComponent(prevUrl);
+        else window.location.href = "/login.html";
+      });
+
       $("form").on("submit", function(event) {
         event.preventDefault();
 
@@ -296,7 +308,10 @@
             var resp = JSON.parse(msg);
             if (resp.status == 0) {
               alert("Registro completado con éxito.");
-              window.location.replace("/index.html");
+
+              var prevUrl = getUrlParameter("prev");
+              if (prevUrl == "") window.location.replace("/index.html");
+              else window.location.replace(prevUrl);
             } else {
               alert("Hubo un problema al registrar la cuenta.");
               window.location.replace("/index.html");

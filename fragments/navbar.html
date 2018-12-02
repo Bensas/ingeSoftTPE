@@ -47,7 +47,7 @@
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item logged-false">
-          <a href="/login.html" class="nav-link">
+          <a class="nav-link btn-login">
             <i class="fa fa-user-circle" aria-hidden="true"></i> Ingresar
           </a>
         </li>
@@ -62,9 +62,7 @@
           <div class="dropdown-menu dropdown-primary">
             <a class="dropdown-item" href="#">Mi perfil</a>
             <a class="dropdown-item" href="/post-event.html">Crear evento</a>
-            <a class="dropdown-item" href="/scripts/session/logout.php"
-              >Cerrar sesión</a
-            >
+            <a class="dropdown-item btn-logout">Cerrar sesión</a>
           </div>
         </li>
         <li class="nav-item logged-true" id="navitem_cart">
@@ -86,6 +84,9 @@
   </div>
 </nav>
 
+<!-- Nuestro JS -->
+<script type="text/javascript" src="js/myFunc.js"></script>
+
 <script>
   function updateTicketCount() {
     $.get("/scripts/event/validticketcount.php", function(data) {
@@ -97,6 +98,17 @@
       }
     });
   }
+
+  $(".btn-login").click(function() {
+    window.location.href =
+      "/login.html?prev=" + encodeURIComponent(getRelativeUrl());
+  });
+
+  $(".btn-logout").click(function() {
+    window.location.href =
+      "/scripts/session/logout.php?prev=" +
+      encodeURIComponent(getRelativeUrl());
+  });
 
   $(function() {
     $.get("/scripts/session/checklogin.php", function(data) {

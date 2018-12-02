@@ -3,5 +3,9 @@
 
     session_destroy();
 
-    header("Location: /index.html");
+    if(isset($_GET["prev"]))
+        header("Location: " . $_GET["prev"]);
+    else
+        header("Location: /index.html");
+    
     die();

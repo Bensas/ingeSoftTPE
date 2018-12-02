@@ -113,6 +113,8 @@
     <link href="css/mdb.min.css" rel="stylesheet" />
     <!-- Your custom styles (optional) -->
     <link href="css/style.min.css" rel="stylesheet" />
+
+    <link href="css/material-select.css" rel="stylesheet" />
     <style type="text/css">
       html,
       body,
@@ -186,7 +188,7 @@
                   fantásticos eventos.</span
                 >
                 <br /><br />
-                <a class="btn btn-primary btn-md my-0 p" href="/login.html">
+                <a class="btn btn-primary btn-md my-0 p btn-login">
                   <i class="fa fa-user-circle ml-1"></i>&emsp;Ingresar
                 </a>
               </div>
@@ -252,6 +254,7 @@
           <div class="col-lg-4 col-md-12 mb-4">
             <div
               id="myMap"
+              class="rounded z-depth-1"
               style="position:relative;width:100%;height:300px;"
             ></div>
           </div>
@@ -259,14 +262,14 @@
             <!-- Carousel Wrapper -->
             <div
               id="carousel-img"
-              class="carousel slide carousel-fade"
+              class="carousel slide carousel-fade z-depth-1"
               data-ride="carousel"
             >
               <!-- Indicators -->
               <ol class="carousel-indicators"></ol>
               <!-- /.Indicators -->
               <!-- Slides -->
-              <div class="carousel-inner" role="listbox"></div>
+              <div class="carousel-inner rounded" role="listbox"></div>
               <!-- /.Slides -->
               <!-- Controls -->
               <a
@@ -574,16 +577,16 @@
 
             $carousel.children(".carousel-inner").append(
               `
-                                                                                          <div class="carousel-item">
-                                                                                          <img
-                                                                                          class="d-block w-100"
-                                                                                          src="/img/events/` +
+                                                                                                                                                                                                                                                                                                      <div class="carousel-item">
+                                                                                                                                                                                                                                                                                                      <img
+                                                                                                                                                                                                                                                                                                      class="d-block w-100"
+                                                                                                                                                                                                                                                                                                      src="/img/events/` +
                 eventId +
                 `/` +
                 resp.images[i] +
                 `"
-                                                                                          />
-                                                                                          </div>`
+                                                                                                                                                                                                                                                                                                      />
+                                                                                                                                                                                                                                                                                                      </div>`
             );
           }
 
@@ -598,17 +601,17 @@
 
             $carousel.children(".carousel-inner").append(
               `<div class="carousel-item">
-                                        <div class="view">
-                                          <!-- Video source -->
-                                <video class="video-intro" autoplay loop muted>
-                                            <source src="/img/events/` +
+                                                                                                                                                                                                                                                    <div class="view">
+                                                                                                                                                                                                                                                      <!-- Video source -->
+                                                                                                                                                                                                                                            <video class="video-intro" autoplay loop muted>
+                                                                                                                                                                                                                                                        <source src="/img/events/` +
                 eventId +
                 "/" +
                 resp.videos[i] +
                 `" />
-                                          </video>
-                                        </div>
-                                      </div>`
+                                                                                                                                                                                                                                                      </video>
+                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                  </div>`
             );
           }
 

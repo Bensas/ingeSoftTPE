@@ -167,7 +167,7 @@
                 >
               </p>
 
-              <a href="/signup.html" class="btn btn-indigo btn-lg"
+              <a id="btn-reg" class="btn btn-indigo btn-lg"
                 >¿No tienes una cuenta? ¡Regístrate ahora!
               </a>
             </div>
@@ -244,6 +244,10 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- Nuestro JS -->
+    <script type="text/javascript" src="js/myFunc.js"></script>
+
     <!-- Initializations -->
     <script type="text/javascript">
       // Animations initialization
@@ -258,14 +262,25 @@
         });
       });
 
+      $("#btn-reg").click(function() {
+        var prevUrl = getUrlParameter("prev");
+        if (prevUrl != "")
+          window.location.href =
+            "/signup.html?prev=" + encodeURIComponent(prevUrl);
+        else window.location.href = "/signup.html";
+      });
+
       $("form").on("submit", function(event) {
         event.preventDefault();
 
         $.post("/scripts/session/login.php", $(this).serialize())
           .done(function(msg) {
             var resp = JSON.parse(msg);
-            if (resp.status == 0) window.location.replace("/index.html");
-            else alert("Usuario o contraseña incorrecto");
+            var prevUrl = getUrlParameter("prev");
+            if (resp.status == 0) {
+              if (prevUrl == "") window.location.replace("/index.html");
+              else window.location.replace(prevUrl);
+            } else alert("Usuario o contraseña incorrecto");
           })
           .fail(function(xhr, status, error) {
             alert(error);

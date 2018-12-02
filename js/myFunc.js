@@ -26,3 +26,7 @@ function formatTime(date) {
     formatTwoDigits(date.getHours()) + ":" + formatTwoDigits(date.getMinutes())
   );
 }
+
+function getRelativeUrl() {
+  return window.location.pathname + window.location.search;
+}
