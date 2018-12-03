@@ -172,7 +172,7 @@
       <div class="container dark-grey-text mt-5">
         <!-- Grid row -->
         <div class="row wow fadeIn">
-          <p class="lead font-weight-bold">Crear evento</p>
+          <p id="pageTitle" class="lead font-weight-bold">Crear evento</p>
         </div>
         <!-- Grid row -->
         <!-- Grid row -->
@@ -269,6 +269,26 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <h5><a>Multimedia</a></h5>
+              <h6>
+                <a>Cargue imágenes y vídeos para promocionar el evento.</a>
+              </h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="file-upload-wrapper">
+                <input
+                  type="file"
+                  id="input-file-now-custom-2"
+                  class="file-upload"
+                  data-height="500"
+                />
+              </div>
+            </div>
+          </div>
           <hr />
           <div class="row">
             <div class="col-6">
@@ -313,272 +333,274 @@
     </main>
     <!-- Main layout -->
 
-    <div
-      class="modal fade"
-      id="modalNewArtist"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-notify modal-info" role="document">
-        <!-- Content -->
-        <div class="modal-content">
-          <!-- Header -->
-          <div class="modal-header text-center">
-            <h4 class="modal-title white-text w-100 font-weight-bold py-2">
-              Añadir nuevo artista
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
+    <section name="modals">
+      <div
+        class="modal fade"
+        id="modalNewArtist"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-notify modal-info" role="document">
+          <!-- Content -->
+          <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header text-center">
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+                Añadir nuevo artista
+              </h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+              <form id="formNewArtist">
+                <div class="md-form mb-5">
+                  <i class="fa fa-user prefix grey-text"></i>
+                  <input
+                    type="text"
+                    id="newArtist_name"
+                    name="name"
+                    class="form-control validate"
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newArtist_name"
+                    >Nombre</label
+                  >
+                </div>
+              </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer justify-content-center">
+              <button
+                class="btn btn-outline-info waves-effect"
+                type="submit"
+                form="formNewArtist"
+                value="Submit"
+              >
+                Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
           </div>
 
-          <!-- Body -->
-          <div class="modal-body">
-            <form id="formNewArtist">
-              <div class="md-form mb-5">
-                <i class="fa fa-user prefix grey-text"></i>
-                <input
-                  type="text"
-                  id="newArtist_name"
-                  name="name"
-                  class="form-control validate"
-                />
-                <label
-                  data-error="El valor ingresado es inválido"
-                  for="newArtist_name"
-                  >Nombre</label
-                >
-              </div>
-            </form>
-          </div>
-
-          <!-- Footer -->
-          <div class="modal-footer justify-content-center">
-            <button
-              class="btn btn-outline-info waves-effect"
-              type="submit"
-              form="formNewArtist"
-              value="Submit"
-            >
-              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
-            </button>
-          </div>
+          <!-- /.Content -->
         </div>
-
-        <!-- /.Content -->
       </div>
-    </div>
 
-    <div
-      class="modal fade"
-      id="modalNewLocation"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-notify modal-info" role="document">
-        <!-- Content -->
-        <div class="modal-content">
-          <!-- Header -->
-          <div class="modal-header text-center">
-            <h4 class="modal-title white-text w-100 font-weight-bold py-2">
-              Añadir nueva ubicación
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
-          </div>
+      <div
+        class="modal fade"
+        id="modalNewLocation"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-notify modal-info" role="document">
+          <!-- Content -->
+          <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header text-center">
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+                Añadir nueva ubicación
+              </h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
 
-          <!-- Body -->
-          <div class="modal-body">
-            <form id="formNewLocation">
-              <div class="md-form mb-5">
-                <i class="fa fa-user prefix grey-text"></i>
-                <input
-                  type="text"
-                  id="newLocation_name"
-                  class="form-control validate"
-                  name="name"
-                />
-                <label
-                  data-error="El valor ingresado es inválido"
-                  for="newLocation_name"
-                  >Nombre</label
-                >
-              </div>
-              <div class="md-form mb-5">
-                <i class="fa fa-map-marker prefix grey-text"></i>
-                <input
-                  type="text"
-                  id="newLocation_address"
-                  class="form-control validate"
-                  name="addresstext"
-                />
-                <label
-                  data-error="El valor ingresado es inválido"
-                  for="newLocation_address"
-                  >Dirección (Texto)</label
-                >
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="md-form mb-5">
-                    <i class="fa fa-map prefix grey-text"></i>
-                    <input
-                      id="newLocation_lat"
-                      class="form-control validate"
-                      type="number"
-                      name="lat"
-                      step="0.0000000000001"
-                    />
-                    <label
-                      data-error="El valor ingresado es inválido"
-                      for="newLocation_lat"
-                      >Latitud (Coordenada)</label
-                    >
+            <!-- Body -->
+            <div class="modal-body">
+              <form id="formNewLocation">
+                <div class="md-form mb-5">
+                  <i class="fa fa-user prefix grey-text"></i>
+                  <input
+                    type="text"
+                    id="newLocation_name"
+                    class="form-control validate"
+                    name="name"
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newLocation_name"
+                    >Nombre</label
+                  >
+                </div>
+                <div class="md-form mb-5">
+                  <i class="fa fa-map-marker prefix grey-text"></i>
+                  <input
+                    type="text"
+                    id="newLocation_address"
+                    class="form-control validate"
+                    name="addresstext"
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newLocation_address"
+                    >Dirección (Texto)</label
+                  >
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="md-form mb-5">
+                      <i class="fa fa-map prefix grey-text"></i>
+                      <input
+                        id="newLocation_lat"
+                        class="form-control validate"
+                        type="number"
+                        name="lat"
+                        step="0.0000000000001"
+                      />
+                      <label
+                        data-error="El valor ingresado es inválido"
+                        for="newLocation_lat"
+                        >Latitud (Coordenada)</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="md-form mb-5">
+                      <i class="fa fa-map prefix grey-text"></i>
+                      <input
+                        id="newLocation_long"
+                        class="form-control validate"
+                        type="number"
+                        name="lon"
+                        step="0.0000000000001"
+                      />
+                      <label
+                        data-error="El valor ingresado es inválido"
+                        for="newLocation_long"
+                        >Longitud (Coordenada)</label
+                      >
+                    </div>
                   </div>
                 </div>
-                <div class="col-12 col-md-6">
-                  <div class="md-form mb-5">
-                    <i class="fa fa-map prefix grey-text"></i>
-                    <input
-                      id="newLocation_long"
-                      class="form-control validate"
-                      type="number"
-                      name="lon"
-                      step="0.0000000000001"
-                    />
-                    <label
-                      data-error="El valor ingresado es inválido"
-                      for="newLocation_long"
-                      >Longitud (Coordenada)</label
-                    >
+              </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer justify-content-center">
+              <button
+                class="btn btn-outline-info waves-effect"
+                type="submit"
+                form="formNewLocation"
+                value="Submit"
+              >
+                Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.Content -->
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalNewFunction"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-notify modal-info" role="document">
+          <!-- Content -->
+          <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header text-center">
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+                Añadir nueva función
+              </h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+              <form id="formNewFunction">
+                <div class="md-form mb-5">
+                  <i class="fa fa-calendar prefix grey-text"></i>
+                  <input
+                    type="date"
+                    id="newFunction_date"
+                    class="form-control validate"
+                    name="date"
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newFunction_date"
+                    >Fecha</label
+                  >
+                </div>
+                <div class="md-form mb-5">
+                  <i class="fa fa-clock-o prefix grey-text"></i>
+                  <input
+                    type="time"
+                    id="newFunction_time"
+                    class="form-control validate"
+                    name="time"
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newFunction_time"
+                    >Hora</label
+                  >
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="md-form mb-5">
+                      <i class="fa fa-ticket prefix grey-text"></i>
+                      <input
+                        id="newFunction_tickets"
+                        class="form-control validate"
+                        type="number"
+                        name="tickets"
+                        min="1"
+                      />
+                      <label
+                        data-error="El valor ingresado es inválido"
+                        for="newFunction_tickets"
+                        >Número de entradas</label
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
 
-          <!-- Footer -->
-          <div class="modal-footer justify-content-center">
-            <button
-              class="btn btn-outline-info waves-effect"
-              type="submit"
-              form="formNewLocation"
-              value="Submit"
-            >
-              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
-            </button>
+            <!-- Footer -->
+            <div class="modal-footer justify-content-center">
+              <button
+                class="btn btn-outline-info waves-effect"
+                type="submit"
+                form="formNewFunction"
+                value="Submit"
+              >
+                Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
           </div>
+          <!-- /.Content -->
         </div>
-        <!-- /.Content -->
       </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="modalNewFunction"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-notify modal-info" role="document">
-        <!-- Content -->
-        <div class="modal-content">
-          <!-- Header -->
-          <div class="modal-header text-center">
-            <h4 class="modal-title white-text w-100 font-weight-bold py-2">
-              Añadir nueva función
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
-          </div>
-
-          <!-- Body -->
-          <div class="modal-body">
-            <form id="formNewFunction">
-              <div class="md-form mb-5">
-                <i class="fa fa-calendar prefix grey-text"></i>
-                <input
-                  type="date"
-                  id="newFunction_date"
-                  class="form-control validate"
-                  name="date"
-                />
-                <label
-                  data-error="El valor ingresado es inválido"
-                  for="newFunction_date"
-                  >Fecha</label
-                >
-              </div>
-              <div class="md-form mb-5">
-                <i class="fa fa-clock-o prefix grey-text"></i>
-                <input
-                  type="time"
-                  id="newFunction_time"
-                  class="form-control validate"
-                  name="time"
-                />
-                <label
-                  data-error="El valor ingresado es inválido"
-                  for="newFunction_time"
-                  >Hora</label
-                >
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="md-form mb-5">
-                    <i class="fa fa-ticket prefix grey-text"></i>
-                    <input
-                      id="newFunction_tickets"
-                      class="form-control validate"
-                      type="number"
-                      name="tickets"
-                      min="1"
-                    />
-                    <label
-                      data-error="El valor ingresado es inválido"
-                      for="newFunction_tickets"
-                      >Número de entradas</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <!-- Footer -->
-          <div class="modal-footer justify-content-center">
-            <button
-              class="btn btn-outline-info waves-effect"
-              type="submit"
-              form="formNewFunction"
-              value="Submit"
-            >
-              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
-            </button>
-          </div>
-        </div>
-        <!-- /.Content -->
-      </div>
-    </div>
+    </section>
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
@@ -680,6 +702,8 @@
             return;
           }
 
+          $("#pageTitle").html("Modificar evento");
+
           var eventData = resp.eventData;
           var eventInstances = resp.eventInstances;
 
@@ -695,46 +719,46 @@
 
             var rowHTML =
               `<tr>
-                                                                                                                                <th scope="row">
-                                                                                                                                  <div class="dropdown dropup">
-                                                                                                                                    <a
-                                                                                                                                      class="dropdown-toggle"
-                                                                                                                                      id="dropdownMenu6"
-                                                                                                                                      data-toggle="dropdown"
-                                                                                                                                      aria-haspopup="true"
-                                                                                                                                      aria-expanded="false"
-                                                                                                                                    >
-                                                                                                                                      <i class="fa fa-gear" aria-hidden="true"></i>
-                                                                                                                                    </a>
-                                                                                                                                    <div
-                                                                                                                                      class="dropdown-menu"
-                                                                                                                                      aria-labelledby="dropdownMenu6"
-                                                                                                                                    >
-                                                                                                                                      <a class="dropdown-item btn-visibility active"
-                                                                                                                                        ><i class="fa fa-eye" aria-hidden="true"></i> La
-                                                                                                                                        función es visible</a
-                                                                                                                                      >
-                                                                                                                                      <a class="dropdown-item btn-edit"
-                                                                                                                                        ><i class="fa fa-pencil" aria-hidden="true"> </i>
-                                                                                                                                        Editar función</a
-                                                                                                                                      >
-                                                                                                                                      <a class="dropdown-item btn-delete"
-                                                                                                                                        ><i class="fa fa-trash" aria-hidden="true"></i>
-                                                                                                                                        Borrar función</a
-                                                                                                                                      >
-                                                                                                                                    </div>
-                                                                                                                                  </div>
-                                                                                                                                </th>
-                                                                                                                                <td>` +
+                                                                                                                                                                    <th scope="row">
+                                                                                                                                                                      <div class="dropdown dropup">
+                                                                                                                                                                        <a
+                                                                                                                                                                          class="dropdown-toggle"
+                                                                                                                                                                          id="dropdownMenu6"
+                                                                                                                                                                          data-toggle="dropdown"
+                                                                                                                                                                          aria-haspopup="true"
+                                                                                                                                                                          aria-expanded="false"
+                                                                                                                                                                        >
+                                                                                                                                                                          <i class="fa fa-gear" aria-hidden="true"></i>
+                                                                                                                                                                        </a>
+                                                                                                                                                                        <div
+                                                                                                                                                                          class="dropdown-menu"
+                                                                                                                                                                          aria-labelledby="dropdownMenu6"
+                                                                                                                                                                        >
+                                                                                                                                                                          <a class="dropdown-item btn-visibility active"
+                                                                                                                                                                            ><i class="fa fa-eye" aria-hidden="true"></i> La
+                                                                                                                                                                            función es visible</a
+                                                                                                                                                                          >
+                                                                                                                                                                          <a class="dropdown-item btn-edit"
+                                                                                                                                                                            ><i class="fa fa-pencil" aria-hidden="true"> </i>
+                                                                                                                                                                            Editar función</a
+                                                                                                                                                                          >
+                                                                                                                                                                          <a class="dropdown-item btn-delete"
+                                                                                                                                                                            ><i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                                                                                                            Borrar función</a
+                                                                                                                                                                          >
+                                                                                                                                                                        </div>
+                                                                                                                                                                      </div>
+                                                                                                                                                                    </th>
+                                                                                                                                                                    <td>` +
               formatDate(date) +
               `</td>
-                                                                                                                                <td>` +
+                                                                                                                                                                    <td>` +
               formatTime(date) +
               `</td>
-                                                                                                                                <td>` +
+                                                                                                                                                                    <td>` +
               eventInstances[i].tickets +
               `</td>
-                                                                                                                                <td>` +
+                                                                                                                                                                    <td>` +
               (eventInstances[i].tickets - eventInstances[i].ticketsRemaining) +
               " (" +
               (eventInstances[i].ticketsRemaining == 0

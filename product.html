@@ -577,16 +577,16 @@
 
             $carousel.children(".carousel-inner").append(
               `
-                                                                                                                                                                                                                                                                                                      <div class="carousel-item">
-                                                                                                                                                                                                                                                                                                      <img
-                                                                                                                                                                                                                                                                                                      class="d-block w-100"
-                                                                                                                                                                                                                                                                                                      src="/img/events/` +
+                                                                                                                                                                                                                                                                                                            <div class="carousel-item">
+                                                                                                                                                                                                                                                                                                            <img
+                                                                                                                                                                                                                                                                                                            class="d-block w-100"
+                                                                                                                                                                                                                                                                                                            src="/img/events/` +
                 eventId +
                 `/` +
                 resp.images[i] +
                 `"
-                                                                                                                                                                                                                                                                                                      />
-                                                                                                                                                                                                                                                                                                      </div>`
+                                                                                                                                                                                                                                                                                                            />
+                                                                                                                                                                                                                                                                                                            </div>`
             );
           }
 
@@ -601,17 +601,17 @@
 
             $carousel.children(".carousel-inner").append(
               `<div class="carousel-item">
-                                                                                                                                                                                                                                                    <div class="view">
-                                                                                                                                                                                                                                                      <!-- Video source -->
-                                                                                                                                                                                                                                            <video class="video-intro" autoplay loop muted>
-                                                                                                                                                                                                                                                        <source src="/img/events/` +
+                                                                                                                                                                                                                                                          <div class="view">
+                                                                                                                                                                                                                                                            <!-- Video source -->
+                                                                                                                                                                                                                                                  <video class="video-intro" autoplay loop muted>
+                                                                                                                                                                                                                                                              <source src="/img/events/` +
                 eventId +
                 "/" +
                 resp.videos[i] +
                 `" />
-                                                                                                                                                                                                                                                      </video>
-                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                  </div>`
+                                                                                                                                                                                                                                                            </video>
+                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                        </div>`
             );
           }
 

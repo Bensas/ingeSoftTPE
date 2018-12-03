@@ -12,7 +12,7 @@
 
             $query = $pdo->prepare("SELECT e.title, e.description, e.ticketPrice, e.imgCover,
                 a.name as artistName,
-                l.name as locationName, l.addressText as locationAddress, l.long, l.lat,
+                l.name as locationName, l.addressText as locationAddress, l.lon, l.lat,
                 t.name as eventType
                 FROM events e
                 INNER JOIN artists a ON e.artistId = a.id
