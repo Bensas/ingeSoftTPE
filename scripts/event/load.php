@@ -40,10 +40,6 @@
             $query->execute([$_GET['eventId']]);
             $eventData = $query->fetch(PDO::FETCH_OBJ);
 
-            foreach ($eventData as $key => $value){
-                $eventData->$key = utf8_encode($value);
-            }
-
             $query = $pdo->prepare("SELECT id, date, time, 
                 CASE 
                 WHEN ticketsRemaining > 0 THEN false
