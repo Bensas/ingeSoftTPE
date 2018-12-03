@@ -193,11 +193,13 @@
             <div class="col-12 col-md-4">
               <div class="md-form">
                 <div class="select" style="width: 100%;">
-                  <select class="select-text" required style="width: 100%;">
+                  <select
+                    class="select-text"
+                    required
+                    style="width: 100%;"
+                    id="selectEventType"
+                  >
                     <option value="" disabled selected></option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
                   </select>
                   <span class="select-highlight"></span>
                   <span class="select-bar"></span>
@@ -216,9 +218,6 @@
                   required
                 >
                   <option></option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
                 </select>
                 <label class="select2-label">Artista</label>
                 <div class="input-group-append">
@@ -242,9 +241,6 @@
                   required
                 >
                   <option></option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
                 </select>
                 <label class="select2-label">Ubicación</label>
                 <div class="input-group-append">
@@ -265,7 +261,7 @@
               <div class="md-form">
                 <textarea
                   type="text"
-                  id="form7"
+                  id="eventDescription"
                   class="md-textarea form-control"
                   rows="3"
                 ></textarea>
@@ -282,6 +278,8 @@
               <h5>
                 <a
                   class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+                  data-toggle="modal"
+                  data-target="#modalNewFunction"
                 >
                   <i class="fa fa-plus" aria-hidden="true"></i> Añadir función
                 </a>
@@ -293,6 +291,7 @@
               <table
                 class="table table-hover table-sm text-center"
                 style="width: 100%;"
+                id="tableFunctions"
               >
                 <thead>
                   <tr>
@@ -304,44 +303,7 @@
                   </tr>
                 </thead>
 
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      <div class="dropdown dropup">
-                        <a
-                          class="dropdown-toggle"
-                          id="dropdownMenu6"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <i class="fa fa-gear" aria-hidden="true"></i>
-                        </a>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenu6"
-                        >
-                          <a class="dropdown-item btn-visibility active"
-                            ><i class="fa fa-eye" aria-hidden="true"></i> La
-                            función es visible</a
-                          >
-                          <a class="dropdown-item btn-edit"
-                            ><i class="fa fa-pencil" aria-hidden="true"> </i>
-                            Editar función</a
-                          >
-                          <a class="dropdown-item btn-delete"
-                            ><i class="fa fa-trash" aria-hidden="true"></i>
-                            Borrar función</a
-                          >
-                        </div>
-                      </div>
-                    </th>
-                    <td>20/01/2019</td>
-                    <td>21:30</td>
-                    <td>2500</td>
-                    <td>543 (21,72%)</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           </div>
@@ -378,29 +340,37 @@
 
           <!-- Body -->
           <div class="modal-body">
-            <div class="md-form mb-5">
-              <i class="fa fa-user prefix grey-text"></i>
-              <input
-                type="text"
-                id="newArtist_name"
-                class="form-control validate"
-              />
-              <label
-                data-error="wrong"
-                data-success="right"
-                for="newArtist_name"
-                >Nombre</label
-              >
-            </div>
+            <form id="formNewArtist">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input
+                  type="text"
+                  id="newArtist_name"
+                  name="name"
+                  class="form-control validate"
+                />
+                <label
+                  data-error="El valor ingresado es inválido"
+                  for="newArtist_name"
+                  >Nombre</label
+                >
+              </div>
+            </form>
           </div>
 
           <!-- Footer -->
           <div class="modal-footer justify-content-center">
-            <a class="btn btn-outline-info waves-effect"
-              >Registrar <i class="fa fa-paper-plane-o ml-1"></i
-            ></a>
+            <button
+              class="btn btn-outline-info waves-effect"
+              type="submit"
+              form="formNewArtist"
+              value="Submit"
+            >
+              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+            </button>
           </div>
         </div>
+
         <!-- /.Content -->
       </div>
     </div>
@@ -432,75 +402,178 @@
 
           <!-- Body -->
           <div class="modal-body">
-            <div class="md-form mb-5">
-              <i class="fa fa-user prefix grey-text"></i>
-              <input
-                type="text"
-                id="newLocation_name"
-                class="form-control validate"
-              />
-              <label
-                data-error="wrong"
-                data-success="right"
-                for="newLocation_name"
-                >Nombre</label
-              >
-            </div>
-            <div class="md-form mb-5">
-              <i class="fa fa-map-marker prefix grey-text"></i>
-              <input
-                type="text"
-                id="newLocation_address"
-                class="form-control validate"
-              />
-              <label
-                data-error="wrong"
-                data-success="right"
-                for="newLocation_address"
-                >Dirección (Texto)</label
-              >
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <div class="md-form mb-5">
-                  <i class="fa fa-map prefix grey-text"></i>
-                  <input
-                    type="text"
-                    id="newLocation_lat"
-                    class="form-control validate"
-                  />
-                  <label
-                    data-error="wrong"
-                    data-success="right"
-                    for="newLocation_lat"
-                    >Latitud (Coordenada)</label
-                  >
+            <form id="formNewLocation">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input
+                  type="text"
+                  id="newLocation_name"
+                  class="form-control validate"
+                  name="name"
+                />
+                <label
+                  data-error="El valor ingresado es inválido"
+                  for="newLocation_name"
+                  >Nombre</label
+                >
+              </div>
+              <div class="md-form mb-5">
+                <i class="fa fa-map-marker prefix grey-text"></i>
+                <input
+                  type="text"
+                  id="newLocation_address"
+                  class="form-control validate"
+                  name="addresstext"
+                />
+                <label
+                  data-error="El valor ingresado es inválido"
+                  for="newLocation_address"
+                  >Dirección (Texto)</label
+                >
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="md-form mb-5">
+                    <i class="fa fa-map prefix grey-text"></i>
+                    <input
+                      id="newLocation_lat"
+                      class="form-control validate"
+                      type="number"
+                      name="lat"
+                      step="0.0000000000001"
+                    />
+                    <label
+                      data-error="El valor ingresado es inválido"
+                      for="newLocation_lat"
+                      >Latitud (Coordenada)</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="md-form mb-5">
+                    <i class="fa fa-map prefix grey-text"></i>
+                    <input
+                      id="newLocation_long"
+                      class="form-control validate"
+                      type="number"
+                      name="lon"
+                      step="0.0000000000001"
+                    />
+                    <label
+                      data-error="El valor ingresado es inválido"
+                      for="newLocation_long"
+                      >Longitud (Coordenada)</label
+                    >
+                  </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
-                <div class="md-form mb-5">
-                  <i class="fa fa-map prefix grey-text"></i>
-                  <input
-                    type="text"
-                    id="newLocation_long"
-                    class="form-control validate"
-                  />
-                  <label
-                    data-error="wrong"
-                    data-success="right"
-                    for="newLocation_long"
-                    >Longitud (Coordenada)</label
-                  >
-                </div>
-              </div>
-            </div>
+            </form>
           </div>
 
           <!-- Footer -->
           <div class="modal-footer justify-content-center">
-            <a class="btn btn-outline-info waves-effect"
-              >Registrar <i class="fa fa-paper-plane-o ml-1"></i
-            ></a>
+            <button
+              class="btn btn-outline-info waves-effect"
+              type="submit"
+              form="formNewLocation"
+              value="Submit"
+            >
+              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.Content -->
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalNewFunction"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-notify modal-info" role="document">
+        <!-- Content -->
+        <div class="modal-content">
+          <!-- Header -->
+          <div class="modal-header text-center">
+            <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+              Añadir nueva función
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+            <form id="formNewFunction">
+              <div class="md-form mb-5">
+                <i class="fa fa-calendar prefix grey-text"></i>
+                <input
+                  type="date"
+                  id="newFunction_date"
+                  class="form-control validate"
+                  name="date"
+                />
+                <label
+                  data-error="El valor ingresado es inválido"
+                  for="newFunction_date"
+                  >Fecha</label
+                >
+              </div>
+              <div class="md-form mb-5">
+                <i class="fa fa-clock-o prefix grey-text"></i>
+                <input
+                  type="time"
+                  id="newFunction_time"
+                  class="form-control validate"
+                  name="time"
+                />
+                <label
+                  data-error="El valor ingresado es inválido"
+                  for="newFunction_time"
+                  >Hora</label
+                >
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="md-form mb-5">
+                    <i class="fa fa-ticket prefix grey-text"></i>
+                    <input
+                      id="newFunction_tickets"
+                      class="form-control validate"
+                      type="number"
+                      name="tickets"
+                      min="1"
+                    />
+                    <label
+                      data-error="El valor ingresado es inválido"
+                      for="newFunction_tickets"
+                      >Número de entradas</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer justify-content-center">
+            <button
+              class="btn btn-outline-info waves-effect"
+              type="submit"
+              form="formNewFunction"
+              value="Submit"
+            >
+              Registrar <i class="fa fa-paper-plane-o ml-1"></i>
+            </button>
           </div>
         </div>
         <!-- /.Content -->
@@ -529,6 +602,174 @@
     </script>
 
     <script>
+      var eventId = "";
+
+      setInputFilter(document.getElementById("newLocation_lat"), function(
+        value
+      ) {
+        return /^-?\d*\.?\d*$/.test(value);
+      });
+
+      setInputFilter(document.getElementById("newLocation_long"), function(
+        value
+      ) {
+        return /^-?\d*\.?\d*$/.test(value);
+      });
+
+      function loadArtists(defaultVal) {
+        $.get("/scripts/artist/get.php", function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 0)
+            $("#selectArtist").select2({
+              theme: "material",
+              placeholder: "",
+              data: resp.results
+            });
+
+          if (defaultVal !== undefined)
+            $("#selectArtist")
+              .val(defaultVal)
+              .trigger("change");
+        });
+      }
+
+      function loadEventTypes() {
+        $.get("/scripts/event/geteventtypes.php", function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 0) {
+            for (let i = 0; i < resp.eventTypes.length; i++)
+              $("#selectEventType").append(
+                $("<option>", {
+                  value: resp.eventTypes[i].id,
+                  text: resp.eventTypes[i].name
+                })
+              );
+          }
+
+          if (defaultVal !== undefined)
+            $("#selectArtist")
+              .val(defaultVal)
+              .trigger("change");
+        });
+      }
+
+      function loadLocations(defaultVal) {
+        $.get("/scripts/location/get.php", function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 0)
+            $("#selectLocation").select2({
+              theme: "material",
+              placeholder: "",
+              data: resp.results
+            });
+
+          if (defaultVal !== undefined)
+            $("#selectLocation")
+              .val(defaultVal)
+              .trigger("change");
+        });
+      }
+
+      function loadEventData() {
+        $.get("/scripts/event/getdata.php", { eventId: eventId }, function(
+          data
+        ) {
+          var resp = JSON.parse(data);
+          if (resp.status == 1) {
+            alert("El evento solicitado no existe.");
+            return;
+          }
+
+          var eventData = resp.eventData;
+          var eventInstances = resp.eventInstances;
+
+          /*$("#eventCover").attr(
+            "src",
+            "/img/events/" + eventId + "/" + eventData.imgCover
+          );*/
+
+          for (let i = 0; i < eventInstances.length; i++) {
+            var date = new Date(
+              eventInstances[i].date + " " + eventInstances[i].time
+            );
+
+            var rowHTML =
+              `<tr>
+                                                                                                                                <th scope="row">
+                                                                                                                                  <div class="dropdown dropup">
+                                                                                                                                    <a
+                                                                                                                                      class="dropdown-toggle"
+                                                                                                                                      id="dropdownMenu6"
+                                                                                                                                      data-toggle="dropdown"
+                                                                                                                                      aria-haspopup="true"
+                                                                                                                                      aria-expanded="false"
+                                                                                                                                    >
+                                                                                                                                      <i class="fa fa-gear" aria-hidden="true"></i>
+                                                                                                                                    </a>
+                                                                                                                                    <div
+                                                                                                                                      class="dropdown-menu"
+                                                                                                                                      aria-labelledby="dropdownMenu6"
+                                                                                                                                    >
+                                                                                                                                      <a class="dropdown-item btn-visibility active"
+                                                                                                                                        ><i class="fa fa-eye" aria-hidden="true"></i> La
+                                                                                                                                        función es visible</a
+                                                                                                                                      >
+                                                                                                                                      <a class="dropdown-item btn-edit"
+                                                                                                                                        ><i class="fa fa-pencil" aria-hidden="true"> </i>
+                                                                                                                                        Editar función</a
+                                                                                                                                      >
+                                                                                                                                      <a class="dropdown-item btn-delete"
+                                                                                                                                        ><i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                                                                        Borrar función</a
+                                                                                                                                      >
+                                                                                                                                    </div>
+                                                                                                                                  </div>
+                                                                                                                                </th>
+                                                                                                                                <td>` +
+              formatDate(date) +
+              `</td>
+                                                                                                                                <td>` +
+              formatTime(date) +
+              `</td>
+                                                                                                                                <td>` +
+              eventInstances[i].tickets +
+              `</td>
+                                                                                                                                <td>` +
+              (eventInstances[i].tickets - eventInstances[i].ticketsRemaining) +
+              " (" +
+              (eventInstances[i].ticketsRemaining == 0
+                ? 100
+                : Math.round(
+                    ((eventInstances[i].tickets -
+                      eventInstances[i].ticketsRemaining) /
+                      eventInstances[i].tickets) *
+                      10000
+                  ) / 100) +
+              `%)</td></tr>`;
+            $("#tableFunctions")
+              .children("tbody")
+              .append(rowHTML);
+          }
+
+          $("#selectArtist")
+            .val(eventData.artistId)
+            .trigger("change");
+
+          $("#selectLocation")
+            .val(eventData.locationId)
+            .trigger("change");
+
+          $("#selectEventType").val(eventData.eventType);
+          //$("#eventTicketPrice").html("$" + eventData.ticketPrice);
+          $("#eventName")
+            .val(eventData.title)
+            .trigger("change");
+          $("#eventDescription")
+            .val(eventData.description)
+            .trigger("change");
+        });
+      }
+
       $(function() {
         /*$.get("/scripts/session/checklogin.php", function(data) {
           var resp = JSON.parse(data);
@@ -537,50 +778,84 @@
 
         $("#fragment_navbar").load("/fragments/navbar.html");
 
-        $(".select2-material").select2({
-          theme: "material",
-          placeholder: ""
-        });
+        initializeSelect2Material();
 
-        $(".select2-material").on("change", function(e) {
-          if ($(this).val() == "")
-            $(this)
-              .siblings(".select2-label")
-              .removeClass("select2-label-active");
-          else
-            $(this)
-              .siblings(".select2-label")
-              .addClass("select2-label-active");
-        });
+        loadEventTypes();
+        loadArtists();
+        loadLocations();
 
-        $(".select2-label").on("click", function(e) {
-          $(this)
-            .siblings("select")
-            .select2("open");
+        eventId = getUrlParameter("eventId");
+        if (eventId != "") loadEventData();
+      });
 
-          /*alert(
-            $(this)
-              .siblings(".select-text")
-              .text()
-          );*/
-        });
+      $("#modalNewArtist").on("hidden.bs.modal", function() {
+        $("#formNewArtist").trigger("reset");
+      });
 
-        $(".select2-selection__arrow").html(
-          "<i class='fa fa-caret-down' aria-hidden='true'></i>&emsp;"
-        );
+      $("#formNewArtist").on("submit", function(event) {
+        event.preventDefault();
 
-        /*$.get("/scripts/event/fillcart.php", function (data) {
-        var resp = JSON.parse(data);
-        if (resp.status == 0) {
-          for (let i = 0; i < resp.tickets.length; i++) {
-            $("#activeTickets > tbody:last-child").append(
-              createRowHtml(resp.tickets[i])
-            );
-          }
-        } else {
-          alert("Error");
-        }
-      });*/
+        $.post("/scripts/artist/new.php", $(this).serialize())
+          .done(function(msg) {
+            var resp = JSON.parse(msg);
+            if (resp.status == 0) {
+              alert("Registro completado con éxito.");
+              loadArtists(resp.insertedId);
+              $("#modalNewArtist").modal("hide");
+            } else {
+              alert("Hubo un problema al registrar el artista.");
+            }
+          })
+          .fail(function(xhr, status, error) {
+            alert(error);
+          });
+      });
+
+      $("#modalNewLocation").on("hidden.bs.modal", function() {
+        $("#formNewLocation").trigger("reset");
+      });
+
+      $("#formNewLocation").on("submit", function(event) {
+        event.preventDefault();
+
+        $.post("/scripts/location/new.php", $(this).serialize())
+          .done(function(msg) {
+            var resp = JSON.parse(msg);
+            if (resp.status == 0) {
+              alert("Registro completado con éxito.");
+              loadLocations(resp.insertedId);
+              $("#modalNewLocation").modal("hide");
+            } else {
+              alert("Hubo un problema al registrar la localización.");
+            }
+          })
+          .fail(function(xhr, status, error) {
+            alert(error);
+          });
+      });
+
+      $("#modalNewFunction").on("hidden.bs.modal", function() {
+        $("#formNewFunction").trigger("reset");
+      });
+
+      $("#formNewFunction").on("submit", function(event) {
+        event.preventDefault();
+
+        $.post("/scripts/events/newfunction.php", $(this).serialize())
+          .done(function(msg) {
+            var resp = JSON.parse(msg);
+            if (resp.status == 0) {
+              alert("Registro completado con éxito.");
+              //loadLocations(resp.insertedId);
+
+              $("#modalNewFunction").modal("hide");
+            } else {
+              alert("Hubo un problema al registrar la localización.");
+            }
+          })
+          .fail(function(xhr, status, error) {
+            alert(error);
+          });
       });
     </script>
   </body>
