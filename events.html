@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TuviTicket</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 60vh;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+
+        .card-show {
+          height: 100% !important;
+        }
+      }
+    </style>
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="fragment_navbar"></div>
+    <!-- Navbar -->
+
+    <!-- Main layout -->
+    <main>
+      <div class="container">
+        <div id="event-grid" class="rows card-group">
+        </div>
+        
+      </div>
+    </main>
+    <!-- Main layout -->
+
+    <div id="modal_login"></div>
+    <div id="modal_signup"></div>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      $(function() {
+        $("#fragment_navbar").load("/fragments/navbar.html", function() {
+          $("#navbar").removeClass("bg-dark");
+          $("#navitem_inicio").addClass("active");
+          $("#navitem_inicio")
+            .children("a")
+            .attr("href", "#");
+          $("#navbar_title").attr("href", "#");
+        });
+      });
+
+      var eventElementHTML = '\
+<div class="col-sm-4">\
+<a href="{deviceLink}">\
+<div class="card-inverse bg-inverse text-xs-center p-t-2">\
+<div class="card card-title" style="height:198px">\
+<img stlye="text-align:center" src="img/device_icons/{imgSrc}" style="display: block;margin: auto;" width="150px" height="150px;">\
+<h6 class="text-dark">{deviceName} ({roomName})</h6>\
+</div>\
+</div>\
+</div>\
+</a>\
+';
+      var eventGridElement = document.getElementById('event-grid');
+      $(function() {
+
+        $.get("/scripts/loadEvents.php", function(data) {
+          document.write(data);
+          // var resp = JSON.parse(data);
+          // if (resp.status == 0){
+          //   alert("Hubo un pro cargar los eventos. Por favor, contacte al administrador.");
+          //   for (var i = 0; i < resp.events.length; i++) {
+          //     eventGridElement.innerHTML += eventElementHTML;
+          //   }
+          // } else {
+          //   alert("Hubo un problema al cargar los eventos. Por favor, contacte al administrador.");
+          // }
+        });
+      });
+    </script>
+  </body>
+</html>

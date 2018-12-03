@@ -7,6 +7,24 @@
         'status' => -1
     ];
 
+    function utf8_encode_deep(&$input) {
+        if (is_string($input)) {
+            $input = utf8_encode($input);
+        } else if (is_array($input)) {
+            foreach ($input as &$value) {
+                utf8_encode_deep($value);
+            }
+
+            unset($value);
+        } else if (is_object($input)) {
+            $vars = array_keys(get_object_vars($input));
+
+            foreach ($vars as $var) {
+                utf8_encode_deep($input->$var);
+            }
+        }
+    }
+
     if ( ! empty( $_GET ) ) {
         if ( isset( $_GET['eventId'] ) ) {
 
@@ -21,6 +39,10 @@
                 WHERE e.id = ?");
             $query->execute([$_GET['eventId']]);
             $eventData = $query->fetch(PDO::FETCH_OBJ);
+
+            foreach ($eventData as $key => $value){
+                $eventData->$key = utf8_encode($value);
+            }
 
             $query = $pdo->prepare("SELECT id, date, time, 
                 CASE 
