@@ -19,9 +19,10 @@
             $query->execute([$_GET['eventId'], $_SESSION['user_id']]);
             $eventData = $query->fetch(PDO::FETCH_OBJ);
 
-            $query = $pdo->prepare("SELECT id, date, time, tickets, ticketsRemaining
+            $query = $pdo->prepare("SELECT id, date, time, tickets, ticketsSold
                 FROM eventInstances
-                WHERE eventId = ?");
+                WHERE eventId = ?
+                ORDER BY date");
             $query->execute([$_GET['eventId']]);
             $eventInstances = $query->fetchAll(PDO::FETCH_OBJ);
 

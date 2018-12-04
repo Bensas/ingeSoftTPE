@@ -42,11 +42,12 @@
 
             $query = $pdo->prepare("SELECT id, date, time, 
                 CASE 
-                WHEN ticketsRemaining > 0 THEN false
+                WHEN ticketsSold < tickets THEN false
                 ELSE true
                 END as isFull
                 FROM eventInstances
-                WHERE eventId = ?");
+                WHERE eventId = ?
+                ORDER BY date");
             $query->execute([$_GET['eventId']]);
             $eventInstances = $query->fetchAll(PDO::FETCH_OBJ);
 

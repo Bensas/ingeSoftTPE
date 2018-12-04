@@ -14,7 +14,7 @@
             $eventInstanceId = $_POST['eventInstanceId'];
             $ticketAmount = $_POST['ticketAmount'];
 
-            $query = $pdo->prepare("SELECT ((ticketsRemaining - ?) >= 0) as isAvalible FROM eventInstances WHERE eventId = ? AND id = ?");
+            $query = $pdo->prepare("SELECT ((ticketsSold + ?) <= tickets) as isAvalible FROM eventInstances WHERE eventId = ? AND id = ?");
             $query->execute([$ticketAmount, $eventId, $eventInstanceId]);
 
             $eventData = $query->fetch(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@
                             $query->execute([$eventInstanceId, $_SESSION['user_id']]);
                         }
                         
-                        $query = $pdo->prepare("UPDATE eventInstances SET ticketsRemaining = (ticketsRemaining - ?) WHERE id = ?");
+                        $query = $pdo->prepare("UPDATE eventInstances SET ticketsSold = (ticketsSold + ?) WHERE id = ?");
                         $query->execute([$ticketAmount, $eventInstanceId]);
 
                         $pdo->commit();
