@@ -170,7 +170,6 @@
     <script>
       $(function() {
         $("#fragment_navbar").load("fragments/navbar.html", function() {
-          $("#navbar").removeClass("bg-dark");
           $("#navitem_eventos").addClass("active");
           $("#navitem_eventos")
             .children("a")
@@ -178,18 +177,6 @@
         });
       });
 
-      var eventElementHTML = '\
-<div class="col-sm-4">\
-<a href="{deviceLink}">\
-<div class="card-inverse bg-inverse text-xs-center p-t-2">\
-<div class="card card-title" style="height:198px">\
-<img stlye="text-align:center" src="img/device_icons/{imgSrc}" style="display: block;margin: auto;" width="150px" height="150px;">\
-<h6 class="text-dark">{deviceName} ({roomName})</h6>\
-</div>\
-</div>\
-</div>\
-</a>\
-';
       var eventRowOpeningHTML = '\
       <section class="mt-5 wow fadeIn">\
           <div class="row">\
@@ -220,8 +207,11 @@
       var eventGridElement = document.getElementById('event-grid');
       $(function() {
         $.get("/scripts/loadEvents.php", function(data) {
-          //document.write(data);
-          var resp = JSON.parse(data);
+          try{
+            var resp = JSON.parse(data);
+          } catch (err){
+            document.write(data);
+          }
           if (resp.status == 0){
             for (var i = 0; i < resp.events.length; i++) {
               var result = '';
