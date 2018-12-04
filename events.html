@@ -140,9 +140,11 @@
     <!-- Main layout -->
     <main>
       <div class="container">
-        <div id="event-grid" class="rows card-group">
+        <div style="margin-top: 60pt">
+          <h1>Eventos disponibles:</h1>
         </div>
-        
+        <div id="event-grid">
+        </div>
       </div>
     </main>
     <!-- Main layout -->
@@ -167,13 +169,12 @@
 
     <script>
       $(function() {
-        $("#fragment_navbar").load("/fragments/navbar.html", function() {
+        $("#fragment_navbar").load("fragments/navbar.html", function() {
           $("#navbar").removeClass("bg-dark");
-          $("#navitem_inicio").addClass("active");
-          $("#navitem_inicio")
+          $("#navitem_eventos").addClass("active");
+          $("#navitem_eventos")
             .children("a")
             .attr("href", "#");
-          $("#navbar_title").attr("href", "#");
         });
       });
 
@@ -189,22 +190,59 @@
 </div>\
 </a>\
 ';
+      var eventRowOpeningHTML = '\
+      <section class="mt-5 wow fadeIn">\
+          <div class="row">\
+      ';
+
+      var eventRowClosingHTML = '\
+          </div>\
+      </section>\
+      ';
+      var eventCardHTML = '\
+      <div class="col-12 col-sm-6 col-md-4">\
+        <div class="card card-image z-depth-2 card-show"\
+          style="background-image: url(/img/events/{eventId}/{eventImg});background-size: cover;">\
+          <!-- Content -->\
+          <div class="text-white text-center rgba-black-strong py-4 px-5">\
+            <div>\
+              <h3 class="card-title pt-2"><strong>{eventTitle}</strong></h3>\
+              <p>{eventLocation}</p>\
+              <a class="btn btn-pink" href="product.html?eventId={eventId}">\
+                <i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más información\
+              </a>\
+            </div>\
+          </div>\
+        </div>\
+      </div>\
+      ';
+
       var eventGridElement = document.getElementById('event-grid');
       $(function() {
-
         $.get("/scripts/loadEvents.php", function(data) {
-          document.write(data);
-          // var resp = JSON.parse(data);
-          // if (resp.status == 0){
-          //   alert("Hubo un pro cargar los eventos. Por favor, contacte al administrador.");
-          //   for (var i = 0; i < resp.events.length; i++) {
-          //     eventGridElement.innerHTML += eventElementHTML;
-          //   }
-          // } else {
-          //   alert("Hubo un problema al cargar los eventos. Por favor, contacte al administrador.");
-          // }
+          //document.write(data);
+          var resp = JSON.parse(data);
+          if (resp.status == 0){
+            for (var i = 0; i < resp.events.length; i++) {
+              var result = '';
+              if (i % 3 == 0)
+                result += i==0? eventRowOpeningHTML: eventRowClosingHTML + eventRowOpeningHTML;
+              result += (i == resp.events.length - 1)?generateEventCard(resp.events[i]) + eventRowClosingHTML : generateEventCard(resp.events[i]);
+              eventGridElement.innerHTML += result;
+            }
+          } else {
+            alert("Hubo un problema al cargar los eventos. Por favor, contacte al administrador.");
+          }
         });
       });
+
+      function generateEventCard(event){
+        var ret = eventCardHTML.replace(/{eventId}/g, event.Id)
+                                .replace(/{eventImg}/, event.imgcover)
+                                .replace(/{eventTitle}/, event.title)
+                                .replace(/{eventLocation}/, event.name);
+        return ret;
+      }
     </script>
   </body>
 </html>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -460,7 +461,7 @@
       }
 
       function fillEventData() {
-        $.get("/scripts/event/load.php", { eventId: eventId }, function(data) {
+        $.get("scripts/event/load.php", { eventId: eventId }, function(data) {
           var resp = JSON.parse(data);
           if (resp.status == 1) {
             alert("El evento solicitado no existe.");
@@ -479,7 +480,7 @@
 
           $("#eventCover").attr(
             "src",
-            "/img/events/" + eventId + "/" + eventData.imgCover
+            "img/events/" + eventId + "/" + eventData.imgCover
           );
 
           $eventDropdown = $("#eventInstances");
@@ -528,7 +529,7 @@
       }
 
       $(function() {
-        $("#fragment_navbar").load("/fragments/navbar.html");
+        $("#fragment_navbar").load("fragments/navbar.html");
 
         eventId = getUrlParameter("eventId");
 
@@ -537,7 +538,7 @@
         loadCarousel();
 
         $("#btnAddToCart").click(function() {
-          $.post("/scripts/event/addtocart.php", {
+          $.post("scripts/event/addtocart.php", {
             eventId: eventId,
             eventInstanceId: $("#eventInstances").val(),
             ticketAmount: $("#txtCantTickets").val()
@@ -565,7 +566,7 @@
       });
 
       function loadCarousel() {
-        $.get("/scripts/event/getmedia.php", { eventId: eventId }, function(
+        $.get("scripts/event/getmedia.php", { eventId: eventId }, function(
           data
         ) {
           var resp = JSON.parse(data);

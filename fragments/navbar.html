@@ -34,14 +34,12 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li id="navitem_inicio" class="nav-item">
-          <a class="nav-link" href="/index.html"
+          <a class="nav-link" href="index.html"
             >Inicio
             <!-- <span class="sr-only">(Actual)</span> -->
           </a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#">Música</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Teatro</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Deportes</a></li>
+        <li id="navitem_eventos" class="nav-item"><a class="nav-link" href="events.html">Eventos</a></li>
       </ul>
 
       <!-- Right -->
@@ -89,7 +87,7 @@
 
 <script>
   function updateTicketCount() {
-    $.get("/scripts/event/validticketcount.php", function(data) {
+    $.get("scripts/event/validticketcount.php", function(data) {
       var resp = JSON.parse(data);
       if (resp.status == 0) {
         $("#validTicketCount").html(resp.ticketCount + " ");
@@ -101,12 +99,12 @@
 
   $(".btn-login").click(function() {
     window.location.href =
-      "/login.html?prev=" + encodeURIComponent(getRelativeUrl());
+      "login.html?prev=" + encodeURIComponent(getRelativeUrl());
   });
 
   $(".btn-logout").click(function() {
     window.location.href =
-      "/scripts/session/logout.php?prev=" +
+      "scripts/session/logout.php?prev=" +
       encodeURIComponent(getRelativeUrl());
   });
 
