@@ -23,10 +23,7 @@
     <link href="css/material-select.css" rel="stylesheet" />
     <link href="css/material-select2.css" rel="stylesheet" />
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"
-      rel="stylesheet"
-    />
+    <link href="css/select2.min.css" rel="stylesheet" />
 
     <style>
       .no-space p {
@@ -65,6 +62,21 @@
         .navbar:not(.top-nav-collapse) {
           background: #1c2331 !important;
         }
+      }
+
+      .video-fluid {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hiddenFileInput {
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+      }
+
+      .img-thumbnail.favorite {
+        background-color: rgba(212, 175, 55, 0.7) !important;
       }
     </style>
 
@@ -270,22 +282,30 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-6">
               <h5><a>Multimedia</a></h5>
               <h6>
                 <a>Cargue imágenes y vídeos para promocionar el evento.</a>
               </h6>
             </div>
+            <div class="col-6 text-right">
+              <h5>
+                <button
+                  class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+                  onclick="$('#imageInput').trigger('click');"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
+                  archivo
+                </button>
+              </h5>
+            </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="file-upload-wrapper">
-                <input
-                  type="file"
-                  id="input-file-now-custom-2"
-                  class="file-upload"
-                  data-height="500"
-                />
+              <div class="d-flex mb-3 justify-content-center" id="imageList">
+                <span class="hiddenFileInput">
+                  <input type="file" id="imageInput" />
+                </span>
               </div>
             </div>
           </div>
@@ -329,6 +349,20 @@
           </div>
         </div>
         <!-- Grid row -->
+
+        <hr />
+
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+              onclick="upload();"
+              style="width: 100%"
+            >
+              <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar
+            </button>
+          </div>
+        </div>
       </div>
     </main>
     <!-- Main layout -->
@@ -369,6 +403,7 @@
                     id="newArtist_name"
                     name="name"
                     class="form-control validate"
+                    required
                   />
                   <label
                     data-error="El valor ingresado es inválido"
@@ -431,6 +466,7 @@
                     id="newLocation_name"
                     class="form-control validate"
                     name="name"
+                    required
                   />
                   <label
                     data-error="El valor ingresado es inválido"
@@ -445,6 +481,7 @@
                     id="newLocation_address"
                     class="form-control validate"
                     name="addresstext"
+                    required
                   />
                   <label
                     data-error="El valor ingresado es inválido"
@@ -462,6 +499,7 @@
                         type="number"
                         name="lat"
                         step="0.0000000000001"
+                        required
                       />
                       <label
                         data-error="El valor ingresado es inválido"
@@ -479,6 +517,7 @@
                         type="number"
                         name="lon"
                         step="0.0000000000001"
+                        required
                       />
                       <label
                         data-error="El valor ingresado es inválido"
@@ -538,10 +577,11 @@
                 <div class="md-form mb-5">
                   <i class="fa fa-calendar prefix grey-text"></i>
                   <input
-                    type="date"
+                    type="text"
                     id="newFunction_date"
                     class="form-control validate"
                     name="date"
+                    required
                   />
                   <label
                     data-error="El valor ingresado es inválido"
@@ -552,10 +592,11 @@
                 <div class="md-form mb-5">
                   <i class="fa fa-clock-o prefix grey-text"></i>
                   <input
-                    type="time"
+                    type="text"
                     id="newFunction_time"
                     class="form-control validate"
                     name="time"
+                    required
                   />
                   <label
                     data-error="El valor ingresado es inválido"
@@ -573,6 +614,7 @@
                         type="number"
                         name="tickets"
                         min="1"
+                        required
                       />
                       <label
                         data-error="El valor ingresado es inválido"
@@ -615,7 +657,9 @@
     <!-- Nuestro JS -->
     <script type="text/javascript" src="js/myFunc.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="js/select2.min.js"></script>
+
+    <!-- <script src="cleave.min.js"></script> -->
 
     <!-- Initializations -->
     <script type="text/javascript">
@@ -625,6 +669,8 @@
 
     <script>
       var eventId = "";
+      var fileList = [];
+      var coverImage;
 
       setInputFilter(document.getElementById("newLocation_lat"), function(
         value
@@ -638,6 +684,260 @@
         return /^-?\d*\.?\d*$/.test(value);
       });
 
+      function createPreview(data, listItem) {
+        var html =
+          "<div class='view overlay img-thumbnail mb-3 image-canvas' style='height: 150px; width: 200px;'>";
+        if (listItem.type == "image")
+          html +=
+            "<img src='" + data + "' alt='zoom' height='100%' width='100%'/>";
+        else if (listItem.type == "video")
+          html +=
+            "<video class='video-fluid' autoplay loop muted><source src='" +
+            data +
+            "' type='video/mp4'/></video>";
+
+        html +=
+          "<div class='mask text-center align-middle waves-effect waves-light rgba-white-strong white-text'><a class='btn btn-danger btn-sm canvas-delete hoverable'><i class='fa fa-trash' aria-hidden='true'></i>&nbsp;Borrar</a>";
+
+        if (listItem.isFavorite)
+          html +=
+            "<a class='btn btn-yellow btn-sm is-cover'><i class='fa fa-star' aria-hidden='true'></i>&nbsp;Es portada</a>";
+        else
+          html +=
+            "<a class='btn btn-outline-warning waves-effect btn-sm white-text hoverable set-cover'><i class='fa fa-star-o' aria-hidden='true'></i>&nbsp;Elegir portada</a>";
+
+        html += "</div></div>";
+
+        var $preview = $(html);
+
+        if (listItem.isFavorite) $preview.addClass("favorite");
+
+        $preview.data("listItem", listItem);
+        fileList.push(listItem);
+
+        $("#imageList").append($preview);
+      }
+
+      function getExtension(filename) {
+        return filename.split(".").pop();
+      }
+
+      function isImage(filename) {
+        var ext = getExtension(filename);
+        switch (ext.toLowerCase()) {
+          case "jpg":
+          case "jepg":
+          case "png":
+            return true;
+        }
+        return false;
+      }
+
+      function isVideo(filename) {
+        var ext = getExtension(filename);
+        switch (ext.toLowerCase()) {
+          case "mp4":
+            return true;
+        }
+        return false;
+      }
+
+      $("#imageInput").change(function() {
+        if (this.files && this.files[0]) {
+          var fileName = $(this).val();
+          var fileType;
+
+          if (isImage(fileName)) fileType = "image";
+          else if (isVideo(fileName)) fileType = "video";
+          else {
+            alert("Tipo de archivo no soportado");
+            return;
+          }
+
+          let isFirst = $("#imageList").children(".image-canvas").length == 0;
+
+          var listItem = {
+            file: this.files[0],
+            saved: false,
+            deleted: false,
+            type: fileType,
+            serverName: null,
+            isFavorite: isFirst
+          };
+
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            createPreview(e.target.result, listItem);
+          };
+
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      $("#imageList").on("click", ".canvas-delete", function() {
+        let listItem = $(this)
+          .parent()
+          .parent()
+          .data("listItem");
+
+        if (listItem.isFavorite) {
+          alert(
+            "No puede eliminar la portada. Elija otra y vuelva a intentarlo."
+          );
+          return;
+        }
+
+        var val = confirm(
+          "¿Está seguro de que desea eliminar este archivo multimedia?"
+        );
+        if (val) {
+          if (!listItem.saved) {
+            let arrIndex = fileList.indexOf(listItem);
+            fileList.splice(arrIndex, 1);
+          } else {
+            listItem.deleted = true;
+          }
+          $(this)
+            .closest(".image-canvas")
+            .remove();
+        }
+      });
+
+      $("#imageList").on("click", ".set-cover", function() {
+        let $element = $(this)
+          .parent()
+          .parent();
+        let $prevFavorite = $element.parent().children(".favorite");
+
+        $prevFavorite.removeClass("favorite");
+        $prevFavorite.data("listItem").isFavorite = false;
+
+        $prevFavorite
+          .children(".mask")
+          .children(".is-cover")
+          .remove();
+        $prevFavorite
+          .children(".mask")
+          .append(
+            "<a class='btn btn-outline-warning waves-effect btn-sm white-text hoverable set-cover'><i class='fa fa-star-o' aria-hidden='true'></i>&nbsp;Elegir portada</a>"
+          );
+
+        $element.addClass("favorite");
+        $element.data("listItem").isFavorite = true;
+        $element
+          .children(".mask")
+          .children(".set-cover")
+          .remove();
+        $element
+          .children(".mask")
+          .append(
+            "<a class='btn btn-yellow btn-sm is-cover'><i class='fa fa-star' aria-hidden='true'></i>&nbsp;Es portada</a>"
+          );
+      });
+
+      function upload() {
+        if ($("#imageList").children(".image-canvas").length == 0) {
+          alert("Es necesario elegir una imagen de portada.");
+          return;
+        } //TODO: COMPROBACIONES
+
+        $.ajax({
+          url: "/scripts/event/save.php",
+          type: "POST",
+          contentType: false,
+          processData: false,
+          data: (function() {
+            var data = new FormData();
+
+            let coverImage = null;
+
+            for (let i = 0; i < fileList.length; i++) {
+              if (!fileList[i].saved) data.append("file[]", fileList[i].file);
+              else if (fileList[i].deleted)
+                data.append("deleteList[]", fileList[i].serverName);
+
+              let fileName = null;
+              if (fileList[i].file != null) fileName = fileList[i].file.name;
+
+              if (!fileList[i].deleted && fileList[i].isFavorite)
+                coverImage = {
+                  saved: fileList[i].saved,
+                  serverName: fileList[i].serverName,
+                  file: fileName
+                };
+            }
+
+            $("#tableFunctions")
+              .children("tbody")
+              .children("tr")
+              .each(function() {
+                let instanceInfo = $(this).data("instanceInfo");
+                if (!instanceInfo.saved)
+                  data.append("instancesList[]", JSON.stringify(instanceInfo));
+              });
+
+            if (eventId != "") data.append("eventId", eventId);
+
+            data.append("eventTitle", $("#eventName").val());
+            data.append("eventDescription", $("#eventDescription").val());
+            data.append("artistId", $("#selectArtist").val());
+            data.append("locationId", $("#selectLocation").val());
+            data.append("eventType", $("#selectEventType").val());
+            data.append("ticketPrice", 1500);
+
+            data.append("coverImage", JSON.stringify(coverImage));
+
+            data.append("ticketPrice", 1500); //TODO: AGREGAR CAMPO
+
+            return data;
+          })(),
+          success: function(result) {
+            alert("Evento guardado correctamente.");
+            window.location.replace("myevents.html"); //TODO: Cambiar por página de Eze
+          },
+          error: function(xhr, result, errorThrown) {
+            alert("Request failed.");
+          }
+        });
+      }
+
+      function loadMedia() {
+        $.get("/scripts/event/getmedia.php", { eventId: eventId }, function(
+          data
+        ) {
+          var resp = JSON.parse(data);
+
+          var path = "/img/events/" + eventId + "/";
+
+          for (let i = 0; i < resp.images.length; i++) {
+            let listItem = {
+              file: null,
+              saved: true,
+              deleted: false,
+              type: "image",
+              serverName: resp.images[i],
+              isFavorite: coverImage == resp.images[i]
+            };
+
+            createPreview(path + resp.images[i], listItem);
+          }
+
+          for (let i = 0; i < resp.videos.length; i++) {
+            let listItem = {
+              file: null,
+              saved: true,
+              deleted: false,
+              type: "video",
+              serverName: resp.videos[i],
+              isFavorite: coverImage == resp.videos[i]
+            };
+
+            createPreview(path + resp.videos[i], listItem);
+          }
+        });
+      }
+
       function loadArtists(defaultVal) {
         $.get("/scripts/artist/get.php", function(data) {
           var resp = JSON.parse(data);
@@ -648,7 +948,7 @@
               data: resp.results
             });
 
-          if (defaultVal !== undefined)
+          if (defaultVal != null)
             $("#selectArtist")
               .val(defaultVal)
               .trigger("change");
@@ -667,11 +967,6 @@
                 })
               );
           }
-
-          if (defaultVal !== undefined)
-            $("#selectArtist")
-              .val(defaultVal)
-              .trigger("change");
         });
       }
 
@@ -685,7 +980,7 @@
               data: resp.results
             });
 
-          if (defaultVal !== undefined)
+          if (defaultVal != null)
             $("#selectLocation")
               .val(defaultVal)
               .trigger("change");
@@ -702,6 +997,12 @@
             return;
           }
 
+          if (resp.status == -2) {
+            alert("No tiene permiso para realizar esta acción.");
+            window.location.replace("index.html");
+            return;
+          }
+
           $("#pageTitle").html("Modificar evento");
 
           var eventData = resp.eventData;
@@ -713,66 +1014,15 @@
           );*/
 
           for (let i = 0; i < eventInstances.length; i++) {
-            var date = new Date(
-              eventInstances[i].date + " " + eventInstances[i].time
-            );
-
-            var rowHTML =
-              `<tr>
-                                                                                                                                                                    <th scope="row">
-                                                                                                                                                                      <div class="dropdown dropup">
-                                                                                                                                                                        <a
-                                                                                                                                                                          class="dropdown-toggle"
-                                                                                                                                                                          id="dropdownMenu6"
-                                                                                                                                                                          data-toggle="dropdown"
-                                                                                                                                                                          aria-haspopup="true"
-                                                                                                                                                                          aria-expanded="false"
-                                                                                                                                                                        >
-                                                                                                                                                                          <i class="fa fa-gear" aria-hidden="true"></i>
-                                                                                                                                                                        </a>
-                                                                                                                                                                        <div
-                                                                                                                                                                          class="dropdown-menu"
-                                                                                                                                                                          aria-labelledby="dropdownMenu6"
-                                                                                                                                                                        >
-                                                                                                                                                                          <a class="dropdown-item btn-visibility active"
-                                                                                                                                                                            ><i class="fa fa-eye" aria-hidden="true"></i> La
-                                                                                                                                                                            función es visible</a
-                                                                                                                                                                          >
-                                                                                                                                                                          <a class="dropdown-item btn-edit"
-                                                                                                                                                                            ><i class="fa fa-pencil" aria-hidden="true"> </i>
-                                                                                                                                                                            Editar función</a
-                                                                                                                                                                          >
-                                                                                                                                                                          <a class="dropdown-item btn-delete"
-                                                                                                                                                                            ><i class="fa fa-trash" aria-hidden="true"></i>
-                                                                                                                                                                            Borrar función</a
-                                                                                                                                                                          >
-                                                                                                                                                                        </div>
-                                                                                                                                                                      </div>
-                                                                                                                                                                    </th>
-                                                                                                                                                                    <td>` +
-              formatDate(date) +
-              `</td>
-                                                                                                                                                                    <td>` +
-              formatTime(date) +
-              `</td>
-                                                                                                                                                                    <td>` +
-              eventInstances[i].tickets +
-              `</td>
-                                                                                                                                                                    <td>` +
-              (eventInstances[i].tickets - eventInstances[i].ticketsRemaining) +
-              " (" +
-              (eventInstances[i].ticketsRemaining == 0
-                ? 100
-                : Math.round(
-                    ((eventInstances[i].tickets -
-                      eventInstances[i].ticketsRemaining) /
-                      eventInstances[i].tickets) *
-                      10000
-                  ) / 100) +
-              `%)</td></tr>`;
-            $("#tableFunctions")
-              .children("tbody")
-              .append(rowHTML);
+            let instanceInfo = {
+              saved: true,
+              id: eventInstances[i].id,
+              date: eventInstances[i].date,
+              time: eventInstances[i].time,
+              tickets: eventInstances[i].tickets,
+              ticketsSold: eventInstances[i].ticketsSold
+            };
+            addEventInstanceRow(instanceInfo);
           }
 
           $("#selectArtist")
@@ -791,7 +1041,51 @@
           $("#eventDescription")
             .val(eventData.description)
             .trigger("change");
+
+          coverImage = eventData.imgCover;
+
+          loadMedia();
         });
+      }
+
+      function addEventInstanceRow(instanceInfo, ret) {
+        var datetime = new Date(instanceInfo.date + " " + instanceInfo.time);
+
+        var rowHTML =
+          `<tr>
+                                                                                                                                                                                                                              <th scope="row">
+                                                                                                                                                                                                                              <a
+                                                                                                                                                                                                                              class="editFunction"
+                                                                                                                                                                                                                              >
+                                                                                                                                                                                                                              <i class="fa fa-gear" aria-hidden="true"></i>
+                                                                                                                                                                                                                              </a>
+                                                                                                                                                                                                                              </th>
+                                                                                                                                                                                                                              <td>` +
+          formatDate(datetime) +
+          `</td>
+                                                                                                                                                                                                                              <td>` +
+          formatTime(datetime) +
+          `</td>
+                                                                                                                                                                                                                              <td>` +
+          instanceInfo.tickets +
+          `</td>
+                                                                                                                                                                                                                              <td>` +
+          instanceInfo.ticketsSold +
+          " (" +
+          Math.round(
+            (instanceInfo.ticketsSold / instanceInfo.tickets) * 10000
+          ) /
+            100 +
+          `%)</td></tr>`;
+
+        $row = $(rowHTML);
+        $row.data("instanceInfo", instanceInfo);
+
+        if (ret) return $row;
+        else
+          $("#tableFunctions")
+            .children("tbody")
+            .append($row);
       }
 
       $(function() {
@@ -805,8 +1099,8 @@
         initializeSelect2Material();
 
         loadEventTypes();
-        loadArtists();
-        loadLocations();
+        loadArtists(null);
+        loadLocations(null);
 
         eventId = getUrlParameter("eventId");
         if (eventId != "") loadEventData();
@@ -860,27 +1154,71 @@
 
       $("#modalNewFunction").on("hidden.bs.modal", function() {
         $("#formNewFunction").trigger("reset");
+        let $modal = $(this);
+        $modal.data("instanceInfo", null);
+        $modal.data("tableRow", null);
+
+        $("#newFunction_tickets").attr("min", 1);
       });
 
       $("#formNewFunction").on("submit", function(event) {
         event.preventDefault();
 
-        $.post("/scripts/events/newfunction.php", $(this).serialize())
-          .done(function(msg) {
-            var resp = JSON.parse(msg);
-            if (resp.status == 0) {
-              alert("Registro completado con éxito.");
-              //loadLocations(resp.insertedId);
+        let $modal = $("#modalNewFunction");
 
-              $("#modalNewFunction").modal("hide");
-            } else {
-              alert("Hubo un problema al registrar la localización.");
-            }
-          })
-          .fail(function(xhr, status, error) {
-            alert(error);
-          });
+        let $tableRow = $modal.data("tableRow");
+
+        let instanceInfo = $modal.data("instanceInfo");
+
+        if (instanceInfo == null) {
+          let instanceInfo = {
+            saved: false,
+            id: 0,
+            date: $("#newFunction_date").val(),
+            time: $("#newFunction_time").val(),
+            tickets: $("#newFunction_tickets").val(),
+            ticketsSold: 0
+          };
+
+          addEventInstanceRow(instanceInfo);
+        } else {
+          instanceInfo.date = $("#newFunction_date").val();
+          instanceInfo.time = $("#newFunction_time").val();
+          instanceInfo.tickets = $("#newFunction_tickets").val();
+          instanceInfo.saved = false;
+          $tableRow.replaceWith(addEventInstanceRow(instanceInfo, true));
+        }
+
+        $("#modalNewFunction").modal("hide");
       });
+
+      $("#tableFunctions").on("click", ".editFunction", function() {
+        let $tableRow = $(this)
+          .parent()
+          .parent();
+
+        let instanceInfo = $tableRow.data("instanceInfo");
+
+        let $modal = $("#modalNewFunction");
+        $modal.data("instanceInfo", instanceInfo);
+        $modal.data("tableRow", $tableRow);
+
+        $("#newFunction_date")
+          .val(instanceInfo.date)
+          .trigger("change");
+        $("#newFunction_time")
+          .val(instanceInfo.time)
+          .trigger("change");
+        $("#newFunction_tickets")
+          .val(instanceInfo.tickets)
+          .trigger("change");
+
+        $("#newFunction_tickets").attr("min", instanceInfo.ticketsSold);
+
+        $modal.modal("show");
+      });
+
+      //$(".newFunction_tickets").mask("(999) 999-9999? 9");
     </script>
   </body>
 </html>

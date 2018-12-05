@@ -7,6 +7,8 @@
         'status' => -1
     ];
 
+    $pdo = Connection::getConnection();
+
     $query = $pdo->prepare("SELECT COUNT(*) as quantity FROM ticketsSold s 
         INNER JOIN eventInstances i ON i.id = s.eventInstanceId 
         WHERE 

@@ -7,6 +7,8 @@
         'status' => -1
     ];
 
+    $pdo = Connection::getConnection();
+
     $query = $pdo->prepare("SELECT id, name from eventTypes");
     $query->execute();
     $eventTypes = $query->fetchAll(PDO::FETCH_OBJ);

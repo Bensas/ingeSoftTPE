@@ -7,26 +7,10 @@
         'status' => -1
     ];
 
-    function utf8_encode_deep(&$input) {
-        if (is_string($input)) {
-            $input = utf8_encode($input);
-        } else if (is_array($input)) {
-            foreach ($input as &$value) {
-                utf8_encode_deep($value);
-            }
-
-            unset($value);
-        } else if (is_object($input)) {
-            $vars = array_keys(get_object_vars($input));
-
-            foreach ($vars as $var) {
-                utf8_encode_deep($input->$var);
-            }
-        }
-    }
-
     if ( ! empty( $_GET ) ) {
         if ( isset( $_GET['eventId'] ) ) {
+
+            $pdo = Connection::getConnection();
 
             $query = $pdo->prepare("SELECT e.title, e.description, e.ticketPrice, e.imgCover,
                 a.name as artistName,
@@ -42,11 +26,12 @@
 
             $query = $pdo->prepare("SELECT id, date, time, 
                 CASE 
-                WHEN ticketsRemaining > 0 THEN false
+                WHEN ticketsSold < tickets THEN false
                 ELSE true
                 END as isFull
                 FROM eventInstances
-                WHERE eventId = ?");
+                WHERE eventId = ?
+                ORDER BY date");
             $query->execute([$_GET['eventId']]);
             $eventInstances = $query->fetchAll(PDO::FETCH_OBJ);
 
