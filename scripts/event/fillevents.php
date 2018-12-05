@@ -16,7 +16,7 @@
         l.name as locationName, l.addressText as locationAddress,
         t.name as eventType
         FROM events e
-        INNER JOIN eventInstances i ON i.eventId = e.Id
+        LEFT JOIN eventInstances i ON i.eventId = e.Id
         INNER JOIN artists a ON e.artistId = a.id
         INNER JOIN locations l on e.locationId = l.id
         INNER JOIN eventTypes t on e.eventType = t.id
