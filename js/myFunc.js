@@ -27,6 +27,20 @@ function formatTime(date) {
   );
 }
 
+function spanishToEnglishDateString(spanishDate) {
+  return spanishDate
+    .split("/")
+    .reverse()
+    .join("-");
+}
+
+function englishToSpanishDateString(englishDate) {
+  return englishDate
+    .split("-")
+    .reverse()
+    .join("/");
+}
+
 function getRelativeUrl() {
   return window.location.pathname + window.location.search;
 }

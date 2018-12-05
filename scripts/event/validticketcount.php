@@ -13,7 +13,7 @@
         INNER JOIN eventInstances i ON i.id = s.eventInstanceId 
         WHERE 
         TIMESTAMP(i.date, i.time) > NOW() AND 
-        s.ownerId = 1");
+        s.ownerId = ?");
 
     $query->execute([$_SESSION['user_id']]);
     $tickets = $query->fetch(PDO::FETCH_ASSOC);

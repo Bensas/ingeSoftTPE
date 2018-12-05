@@ -190,179 +190,194 @@
         <!-- Grid row -->
         <div class="wow fadeIn">
           <h5><a>Información general</a></h5>
-          <div class="row">
-            <div class="col-12 col-md-8">
-              <div class="md-form">
-                <input
-                  type="text"
-                  id="eventName"
-                  name="eventName"
-                  class="form-control"
-                />
-                <label for="eventName">Nombre del evento</label>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="md-form">
-                <div class="select" style="width: 100%;">
-                  <select
-                    class="select-text"
+          <form id="eventForm">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="md-form">
+                  <input
+                    type="text"
+                    id="eventName"
+                    name="eventName"
+                    class="form-control"
                     required
+                  />
+                  <label for="eventName">Nombre del evento</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="md-form">
+                  <div class="select" style="width: 100%;">
+                    <select
+                      class="select-text"
+                      required
+                      style="width: 100%;"
+                      id="selectEventType"
+                    >
+                      <option value="" disabled selected></option>
+                    </select>
+                    <span class="select-highlight"></span>
+                    <span class="select-bar"></span>
+                    <label class="select-label">Tipo de evento</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="md-form">
+                  <input
+                    type="text"
+                    id="ticketPrice"
+                    name="ticketPrice"
+                    class="form-control"
+                    placeholder="$"
+                    required
+                  />
+                  <label for="ticketPrice">Precio por entrada</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-6 md-form">
+                <div class="input-group">
+                  <select
+                    id="selectArtist"
+                    class="select2-material"
                     style="width: 100%;"
-                    id="selectEventType"
+                    required
                   >
-                    <option value="" disabled selected></option>
+                    <option></option>
                   </select>
-                  <span class="select-highlight"></span>
-                  <span class="select-bar"></span>
-                  <label class="select-label">Tipo de evento</label>
+                  <label class="select2-label">Artista</label>
+                  <div class="input-group-append">
+                    <a
+                      class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+                      data-toggle="modal"
+                      data-target="#modalNewArtist"
+                    >
+                      <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
+                      artista
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 md-form">
+                <div class="input-group" style="width: 100%">
+                  <select
+                    id="selectLocation"
+                    class="select2-material"
+                    style="width: 100%;"
+                    required
+                  >
+                    <option></option>
+                  </select>
+                  <label class="select2-label">Ubicación</label>
+                  <div class="input-group-append">
+                    <a
+                      class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+                      data-toggle="modal"
+                      data-target="#modalNewLocation"
+                    >
+                      <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
+                      ubicación
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-md-6 md-form">
-              <div class="input-group">
-                <select
-                  id="selectArtist"
-                  class="select2-material"
-                  style="width: 100%;"
-                  required
-                >
-                  <option></option>
-                </select>
-                <label class="select2-label">Artista</label>
-                <div class="input-group-append">
+            <div class="row">
+              <div class="col-12">
+                <div class="md-form">
+                  <textarea
+                    type="text"
+                    id="eventDescription"
+                    class="md-textarea form-control"
+                    rows="3"
+                  ></textarea>
+                  <label for="form7">Descripción del evento</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <h5><a>Multimedia</a></h5>
+                <h6>
+                  <a>Cargue imágenes y vídeos para promocionar el evento.</a>
+                </h6>
+              </div>
+              <div class="col-6 text-right">
+                <h5>
+                  <button
+                    class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+                    onclick="$('#imageInput').trigger('click');"
+                  >
+                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
+                    archivo
+                  </button>
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex mb-3 justify-content-center" id="imageList">
+                  <span class="hiddenFileInput">
+                    <input type="file" id="imageInput" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-6">
+                <h5><a>Funciones</a></h5>
+              </div>
+              <div class="col-6 text-right">
+                <h5>
                   <a
                     class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
                     data-toggle="modal"
-                    data-target="#modalNewArtist"
+                    data-target="#modalNewFunction"
                   >
-                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
-                    artista
+                    <i class="fa fa-plus" aria-hidden="true"></i> Añadir función
                   </a>
-                </div>
+                </h5>
               </div>
             </div>
-            <div class="col-12 col-md-6 md-form">
-              <div class="input-group" style="width: 100%">
-                <select
-                  id="selectLocation"
-                  class="select2-material"
+            <div class="row">
+              <div class="col-12">
+                <table
+                  class="table table-hover table-sm text-center"
                   style="width: 100%;"
-                  required
+                  id="tableFunctions"
                 >
-                  <option></option>
-                </select>
-                <label class="select2-label">Ubicación</label>
-                <div class="input-group-append">
-                  <a
-                    class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
-                    data-toggle="modal"
-                    data-target="#modalNewLocation"
-                  >
-                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
-                    ubicación
-                  </a>
-                </div>
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Hora</th>
+                      <th scope="col">Total de entradas</th>
+                      <th scope="col">Entradas vendidas</th>
+                    </tr>
+                  </thead>
+
+                  <tbody></tbody>
+                </table>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="md-form">
-                <textarea
-                  type="text"
-                  id="eventDescription"
-                  class="md-textarea form-control"
-                  rows="3"
-                ></textarea>
-                <label for="form7">Descripción del evento</label>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <h5><a>Multimedia</a></h5>
-              <h6>
-                <a>Cargue imágenes y vídeos para promocionar el evento.</a>
-              </h6>
-            </div>
-            <div class="col-6 text-right">
-              <h5>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-12">
                 <button
                   class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
-                  onclick="$('#imageInput').trigger('click');"
+                  style="width: 100%"
                 >
-                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir
-                  archivo
+                  <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar
                 </button>
-              </h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex mb-3 justify-content-center" id="imageList">
-                <span class="hiddenFileInput">
-                  <input type="file" id="imageInput" />
-                </span>
               </div>
             </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-6">
-              <h5><a>Funciones</a></h5>
-            </div>
-            <div class="col-6 text-right">
-              <h5>
-                <a
-                  class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
-                  data-toggle="modal"
-                  data-target="#modalNewFunction"
-                >
-                  <i class="fa fa-plus" aria-hidden="true"></i> Añadir función
-                </a>
-              </h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <table
-                class="table table-hover table-sm text-center"
-                style="width: 100%;"
-                id="tableFunctions"
-              >
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Total de entradas</th>
-                    <th scope="col">Entradas vendidas</th>
-                  </tr>
-                </thead>
-
-                <tbody></tbody>
-              </table>
-            </div>
-          </div>
+          </form>
         </div>
         <!-- Grid row -->
-
-        <hr />
-
-        <div class="row">
-          <div class="col-12">
-            <button
-              class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
-              onclick="upload();"
-              style="width: 100%"
-            >
-              <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar
-            </button>
-          </div>
-        </div>
       </div>
     </main>
     <!-- Main layout -->
@@ -604,25 +619,21 @@
                     >Hora</label
                   >
                 </div>
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <div class="md-form mb-5">
-                      <i class="fa fa-ticket prefix grey-text"></i>
-                      <input
-                        id="newFunction_tickets"
-                        class="form-control validate"
-                        type="number"
-                        name="tickets"
-                        min="1"
-                        required
-                      />
-                      <label
-                        data-error="El valor ingresado es inválido"
-                        for="newFunction_tickets"
-                        >Número de entradas</label
-                      >
-                    </div>
-                  </div>
+                <div class="md-form mb-5">
+                  <i class="fa fa-ticket prefix grey-text"></i>
+                  <input
+                    id="newFunction_tickets"
+                    class="form-control validate"
+                    type="number"
+                    name="tickets"
+                    min="1"
+                    required
+                  />
+                  <label
+                    data-error="El valor ingresado es inválido"
+                    for="newFunction_tickets"
+                    >Número de entradas</label
+                  >
                 </div>
               </form>
             </div>
@@ -659,7 +670,7 @@
 
     <script src="js/select2.min.js"></script>
 
-    <!-- <script src="cleave.min.js"></script> -->
+    <script src="js/cleave.min.js"></script>
 
     <!-- Initializations -->
     <script type="text/javascript">
@@ -671,6 +682,23 @@
       var eventId = "";
       var fileList = [];
       var coverImage;
+
+      var dateCleave = new Cleave("#newFunction_date", {
+        date: true,
+        datePattern: ["d", "m", "Y"]
+      });
+
+      var timeCleave = new Cleave("#newFunction_time", {
+        time: true,
+        timePattern: ["h", "m"]
+      });
+
+      var ticketPriceCleave = new Cleave("#ticketPrice", {
+        numeral: true,
+        delimiter: "",
+        prefix: "$",
+        blocks: [3, 6] // or [9]
+      });
 
       setInputFilter(document.getElementById("newLocation_lat"), function(
         value
@@ -836,7 +864,12 @@
           );
       });
 
-      function upload() {
+      $("form").on("submit", function(event) {
+        event.preventDefault();
+        sendEvent();
+      });
+
+      function sendEvent() {
         if ($("#imageList").children(".image-canvas").length == 0) {
           alert("Es necesario elegir una imagen de portada.");
           return;
@@ -884,11 +917,15 @@
             data.append("artistId", $("#selectArtist").val());
             data.append("locationId", $("#selectLocation").val());
             data.append("eventType", $("#selectEventType").val());
-            data.append("ticketPrice", 1500);
 
             data.append("coverImage", JSON.stringify(coverImage));
 
-            data.append("ticketPrice", 1500); //TODO: AGREGAR CAMPO
+            data.append(
+              "ticketPrice",
+              $("#ticketPrice")
+                .val()
+                .substr(1)
+            ); //TODO: AGREGAR CAMPO
 
             return data;
           })(),
@@ -1034,7 +1071,8 @@
             .trigger("change");
 
           $("#selectEventType").val(eventData.eventType);
-          //$("#eventTicketPrice").html("$" + eventData.ticketPrice);
+          $("#ticketPrice").val("$" + eventData.ticketPrice);
+
           $("#eventName")
             .val(eventData.title)
             .trigger("change");
@@ -1053,23 +1091,23 @@
 
         var rowHTML =
           `<tr>
-                                                                                                                                                                                                                              <th scope="row">
-                                                                                                                                                                                                                              <a
-                                                                                                                                                                                                                              class="editFunction"
-                                                                                                                                                                                                                              >
-                                                                                                                                                                                                                              <i class="fa fa-gear" aria-hidden="true"></i>
-                                                                                                                                                                                                                              </a>
-                                                                                                                                                                                                                              </th>
-                                                                                                                                                                                                                              <td>` +
-          formatDate(datetime) +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th scope="row">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    class="editFunction"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="fa fa-gear" aria-hidden="true"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </th>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>` +
+          englishToSpanishDateString(instanceInfo.date) +
           `</td>
-                                                                                                                                                                                                                              <td>` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>` +
           formatTime(datetime) +
           `</td>
-                                                                                                                                                                                                                              <td>` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>` +
           instanceInfo.tickets +
           `</td>
-                                                                                                                                                                                                                              <td>` +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>` +
           instanceInfo.ticketsSold +
           " (" +
           Math.round(
@@ -1154,6 +1192,9 @@
 
       $("#modalNewFunction").on("hidden.bs.modal", function() {
         $("#formNewFunction").trigger("reset");
+        $("#newFunction_date").trigger("change");
+        $("#newFunction_time").trigger("change");
+        $("#newFunction_tickets").trigger("change");
         let $modal = $(this);
         $modal.data("instanceInfo", null);
         $modal.data("tableRow", null);
@@ -1174,7 +1215,7 @@
           let instanceInfo = {
             saved: false,
             id: 0,
-            date: $("#newFunction_date").val(),
+            date: spanishToEnglishDateString($("#newFunction_date").val()),
             time: $("#newFunction_time").val(),
             tickets: $("#newFunction_tickets").val(),
             ticketsSold: 0
@@ -1182,7 +1223,9 @@
 
           addEventInstanceRow(instanceInfo);
         } else {
-          instanceInfo.date = $("#newFunction_date").val();
+          instanceInfo.date = spanishToEnglishDateString(
+            $("#newFunction_date").val()
+          );
           instanceInfo.time = $("#newFunction_time").val();
           instanceInfo.tickets = $("#newFunction_tickets").val();
           instanceInfo.saved = false;
@@ -1203,11 +1246,13 @@
         $modal.data("instanceInfo", instanceInfo);
         $modal.data("tableRow", $tableRow);
 
+        let dateVal = new Date(instanceInfo.date + " " + instanceInfo.time);
+
         $("#newFunction_date")
-          .val(instanceInfo.date)
+          .val(englishToSpanishDateString(instanceInfo.date))
           .trigger("change");
         $("#newFunction_time")
-          .val(instanceInfo.time)
+          .val(formatTime(dateVal))
           .trigger("change");
         $("#newFunction_tickets")
           .val(instanceInfo.tickets)

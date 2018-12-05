@@ -125,7 +125,7 @@
             imgCover = ?
             WHERE Id = ? AND adminId = ?");
     $query->execute([$coverImage->serverName, 
-        $_POST["eventId"], $_SESSION['user_id']]);
+        $eventId, $_SESSION['user_id']]);
 
     $retObj->images = (object) [
         'upload' => (object) [

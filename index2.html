@@ -20,6 +20,9 @@
     <!-- Your custom styles (optional) -->
     <link href="css/style.min.css" rel="stylesheet" />
 
+    <!-- MDBootstrap Datatables -->
+    <link href="css/addons/datatables.min.css" rel="stylesheet" />
+
     <style type="text/css">
       html,
       body,
@@ -40,10 +43,16 @@
         .navbar:not(.top-nav-collapse) {
           background: #1c2331 !important;
         }
+      }
 
-        .card-show {
-          height: 100% !important;
-        }
+      .event-card-size {
+        height: 250px !important;
+        width: 350px !important;
+      }
+
+      .anchor {
+        padding-top: 80px;
+        margin-top: -80px;
       }
     </style>
 
@@ -377,66 +386,9 @@
       <div class="container fullscreen">
         <!-- Section: Main info -->
         <section class="mt-5 wow fadeIn">
-          <div class="row">
-            <div class="tabs">
-              <input type="radio" id="tab1" name="tab-control" checked />
-              <input type="radio" id="tab2" name="tab-control" />
-              <input type="radio" id="tab3" name="tab-control" />
-              <input type="radio" id="tab4" name="tab-control" />
-              <ul>
-                <li title="Features">
-                  <label for="tab1" role="button">
-                    <br /><span>Música</span>
-                  </label>
-                </li>
-                <li title="Delivery Contents">
-                  <label for="tab2" role="button">
-                    <br /><span>Teatro</span>
-                  </label>
-                </li>
-                <li title="Shipping">
-                  <label for="tab3" role="button">
-                    <br /><span>Deportes</span>
-                  </label>
-                </li>
-                <li title="Returns">
-                  <label for="tab4" role="button">
-                    <br /><span>Espectáculos</span>
-                  </label>
-                </li>
-              </ul>
-              <div class="slider"><div class="indicator"></div></div>
-              <div class="content">
-                <section>
-                  <h2>Features</h2>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
-                  dolorem sequi, quo tempore in eum obcaecati atque quibusdam
-                  officiis est dolorum minima deleniti ratione molestias
-                  numquam. Voluptas voluptates quibusdam cum?
-                </section>
-                <section>
-                  <h2>Delivery Contents</h2>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Autem quas adipisci a accusantium eius ut voluptatibus ad
-                  impedit nulla, ipsa qui. Quasi temporibus eos commodi aliquid
-                  impedit amet, similique nulla.
-                </section>
-                <section>
-                  <h2>Shipping</h2>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
-                  nemo ducimus eius, magnam error quisquam sunt voluptate
-                  labore, excepturi numquam! Alias libero optio sed harum
-                  debitis! Veniam, quia in eum.
-                </section>
-                <section>
-                  <h2>Returns</h2>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-                  dicta vero rerum? Eaque repudiandae architecto libero
-                  reprehenderit aliquam magnam ratione quidem? Nobis doloribus
-                  molestiae enim deserunt necessitatibus eaque quidem incidunt.
-                </section>
-              </div>
-            </div>
+          <div class="row" id="listEvents-1">
+            <h5 class="anchor" id="tagConcerts">Conciertos</h5>
+            <br />
           </div>
         </section>
       </div>
@@ -455,6 +407,10 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- MDBootstrap Datatables -->
+    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+
     <!-- Initializations -->
     <script type="text/javascript">
       // Animations initialization
@@ -462,6 +418,46 @@
     </script>
 
     <script>
+      var topMenu;
+
+      var eventRowOpeningHTML =
+        '\
+      <section class="mt-5 wow fadeIn">\
+          <div class="row">\
+      ';
+
+      var eventRowClosingHTML = "\
+          </div>\
+      </section>\
+      ";
+      var eventCardHTML =
+        '\
+      <div class="col-12 col-sm-6 col-md-4 p-3">\
+        <div class="card card-image z-depth-2 event-card-size"\
+          style="background-image: url(/img/events/{eventId}/{eventImg});background-size: cover;">\
+          <!-- Content -->\
+          <div class="text-white text-center rgba-black-strong py-4 px-5 event-card-size">\
+            <div>\
+              <h3 class="card-title pt-2"><strong>{eventTitle}</strong></h3>\
+              <p>{eventLocation}</p>\
+              <a class="btn btn-pink" href="product.html?eventId={eventId}">\
+                <i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más información\
+              </a>\
+            </div>\
+          </div>\
+        </div>\
+      </div>\
+      ';
+
+      function generateEventCard(event) {
+        var ret = eventCardHTML
+          .replace(/{eventId}/g, event.Id)
+          .replace(/{eventImg}/, event.imgcover)
+          .replace(/{eventTitle}/, event.title)
+          .replace(/{eventLocation}/, event.name);
+        return ret;
+      }
+
       $(function() {
         $("#fragment_navbar").load("/fragments/navbar.html", function() {
           $("#navbar").removeClass("bg-dark");
@@ -470,8 +466,49 @@
             .children("a")
             .attr("href", "#");
           $("#navbar_title").attr("href", "#");
+
+          topMenu = $("#navbar-nav");
+        });
+
+        $.get("/scripts/loadEvents.php", function(data) {
+          try {
+            var resp = JSON.parse(data);
+          } catch (err) {
+            document.write(data);
+          }
+          if (resp.status == 0) {
+            for (var i = 0; i < resp.events.length; i++) {
+              $("#listEvents-" + resp.events[i].eventType).append(
+                generateEventCard(resp.events[i])
+              );
+            }
+          } else {
+            alert(
+              "Hubo un problema al cargar los eventos. Por favor, contacte al administrador."
+            );
+          }
         });
       });
+
+      $(document).on("scroll", onScroll);
+
+      function onScroll(event) {
+        var scrollPos = $(document).scrollTop();
+        $("#navbar-nav a.index-anchor").each(function() {
+          var currLink = $(this);
+          var refElement = $(currLink.attr("href"));
+
+          if (
+            refElement.position().top <= scrollPos &&
+            refElement.position().top + refElement.height() > scrollPos
+          ) {
+            $("#navbar-nav ul li a").removeClass("active");
+            currLink.parent().addClass("active");
+          } else {
+            currLink.parent().removeClass("active");
+          }
+        });
+      }
     </script>
   </body>
 </html>

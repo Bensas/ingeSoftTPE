@@ -30,7 +30,8 @@
                 ELSE true
                 END as isFull
                 FROM eventInstances
-                WHERE eventId = ?
+                WHERE eventId = ? AND
+                TIMESTAMP(date, time) > NOW()
                 ORDER BY date");
             $query->execute([$_GET['eventId']]);
             $eventInstances = $query->fetchAll(PDO::FETCH_OBJ);

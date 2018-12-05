@@ -9,7 +9,7 @@
 
     $pdo = Connection::getConnection();
 
-    $query = $pdo->prepare("SELECT * FROM events 
+    $query = $pdo->prepare("SELECT events.*, locations.name FROM events 
                             JOIN locations
                             ON events.locationId = locations.iD");
     $query->execute();
