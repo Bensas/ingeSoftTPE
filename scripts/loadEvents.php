@@ -6,7 +6,6 @@
     $retObj = (object) [
         'status' => -1
     ];
-
     $pdo = Connection::getConnection();
 
     $query = $pdo->prepare("SELECT events.*, locations.name FROM events 
