@@ -213,13 +213,14 @@
             document.write(data);
           }
           if (resp.status == 0){
+            var result = '';
             for (var i = 0; i < resp.events.length; i++) {
-              var result = '';
               if (i % 3 == 0)
                 result += i==0? eventRowOpeningHTML: eventRowClosingHTML + eventRowOpeningHTML;
               result += (i == resp.events.length - 1)?generateEventCard(resp.events[i]) + eventRowClosingHTML : generateEventCard(resp.events[i]);
-              eventGridElement.innerHTML += result;
             }
+            eventGridElement.innerHTML += result;
+
           } else {
             alert("Hubo un problema al cargar los eventos. Por favor, contacte al administrador.");
           }
@@ -227,10 +228,11 @@
       });
 
       function generateEventCard(event){
-        var ret = eventCardHTML.replace(/{eventId}/g, event.Id)
-                                .replace(/{eventImg}/, event.imgcover)
-                                .replace(/{eventTitle}/, event.title)
-                                .replace(/{eventLocation}/, event.name);
+        var ret = eventCardHTML;
+        ret = ret.replace(/{eventId}/g, event.Id)
+                  .replace(/{eventImg}/, event.imgcover)
+                  .replace(/{eventTitle}/, event.title)
+                  .replace(/{eventLocation}/, event.name);
         return ret;
       }
     </script>

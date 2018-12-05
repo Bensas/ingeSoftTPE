@@ -7,9 +7,9 @@
         'status' => -1
     ];
 
-    $query = $pdo->prepare("SELECT * FROM events 
-                            JOIN locations
-                            ON events.locationId = locations.iD");
+    $query = $pdo->prepare("SELECT e.Id, e.imgcover, e.title, l.name FROM events e
+                            JOIN locations l
+                            ON e.locationId = l.iD");
     $query->execute();
     $events = $query->fetchAll(PDO::FETCH_OBJ);
 
