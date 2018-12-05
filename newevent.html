@@ -350,12 +350,19 @@
         </div>
         <!-- Grid row -->
 
-        <button
-          class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
-          onclick="upload();"
-        >
-          <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar
-        </button>
+        <hr />
+
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-md btn-outline-mdb-color m-0 px-3 py-2 z-depth-0 waves-effect"
+              onclick="upload();"
+              style="width: 100%"
+            >
+              <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Guardar
+            </button>
+          </div>
+        </div>
       </div>
     </main>
     <!-- Main layout -->
@@ -652,7 +659,7 @@
 
     <script src="js/select2.min.js"></script>
 
-    <script src="cleave.min.js"></script>
+    <!-- <script src="cleave.min.js"></script> -->
 
     <!-- Initializations -->
     <script type="text/javascript">
@@ -941,7 +948,7 @@
               data: resp.results
             });
 
-          if (defaultVal !== undefined)
+          if (defaultVal != null)
             $("#selectArtist")
               .val(defaultVal)
               .trigger("change");
@@ -960,11 +967,6 @@
                 })
               );
           }
-
-          if (defaultVal !== undefined)
-            $("#selectArtist")
-              .val(defaultVal)
-              .trigger("change");
         });
       }
 
@@ -978,7 +980,7 @@
               data: resp.results
             });
 
-          if (defaultVal !== undefined)
+          if (defaultVal != null)
             $("#selectLocation")
               .val(defaultVal)
               .trigger("change");
@@ -992,6 +994,12 @@
           var resp = JSON.parse(data);
           if (resp.status == 1) {
             alert("El evento solicitado no existe.");
+            return;
+          }
+
+          if (resp.status == -2) {
+            alert("No tiene permiso para realizar esta acción.");
+            window.location.replace("index.html");
             return;
           }
 
@@ -1045,23 +1053,23 @@
 
         var rowHTML =
           `<tr>
-                                                                                                                                                                        <th scope="row">
-                                                                                                                                                                        <a
-                                                                                                                                                                        class="editFunction"
-                                                                                                                                                                        >
-                                                                                                                                                                        <i class="fa fa-gear" aria-hidden="true"></i>
-                                                                                                                                                                        </a>
-                                                                                                                                                                        </th>
-                                                                                                                                                                        <td>` +
+                                                                                                                                                                                                                              <th scope="row">
+                                                                                                                                                                                                                              <a
+                                                                                                                                                                                                                              class="editFunction"
+                                                                                                                                                                                                                              >
+                                                                                                                                                                                                                              <i class="fa fa-gear" aria-hidden="true"></i>
+                                                                                                                                                                                                                              </a>
+                                                                                                                                                                                                                              </th>
+                                                                                                                                                                                                                              <td>` +
           formatDate(datetime) +
           `</td>
-                                                                                                                                                                        <td>` +
+                                                                                                                                                                                                                              <td>` +
           formatTime(datetime) +
           `</td>
-                                                                                                                                                                        <td>` +
+                                                                                                                                                                                                                              <td>` +
           instanceInfo.tickets +
           `</td>
-                                                                                                                                                                        <td>` +
+                                                                                                                                                                                                                              <td>` +
           instanceInfo.ticketsSold +
           " (" +
           Math.round(
@@ -1091,8 +1099,8 @@
         initializeSelect2Material();
 
         loadEventTypes();
-        loadArtists();
-        loadLocations();
+        loadArtists(null);
+        loadLocations(null);
 
         eventId = getUrlParameter("eventId");
         if (eventId != "") loadEventData();
@@ -1210,7 +1218,7 @@
         $modal.modal("show");
       });
 
-      $(".newFunction_tickets").mask("(999) 999-9999? 9");
+      //$(".newFunction_tickets").mask("(999) 999-9999? 9");
     </script>
   </body>
 </html>

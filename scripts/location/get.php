@@ -5,6 +5,8 @@
         'status' => -1
     ];
 
+    $pdo = Connection::getConnection();
+
     $query = $pdo->prepare("SELECT id, CONCAT(name, ' (', addresstext, ')') as text FROM locations ORDER BY name");
     $query->execute();
     $locationList = $query->fetchAll(PDO::FETCH_OBJ);

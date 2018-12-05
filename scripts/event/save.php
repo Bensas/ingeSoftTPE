@@ -5,6 +5,13 @@
     session_start();
 
     include_once("../connection.php");
+    include_once("../session/userdata.php");
+
+    if(getPrivilegeLevel() < PrivilegeLevels::ORGANIZER) {
+        $retObj->status = -2;
+        echo json_encode($retObj);
+        die();
+    }
 
     $eventId = $_POST["eventId"];
 
@@ -14,6 +21,8 @@
 
     $coverImage = json_decode($_POST["coverImage"]);
     $newCover = ($coverImage->serverName == NULL);
+
+    $pdo = Connection::getConnection();
 
     if(isset($eventId)) { //Mod
 

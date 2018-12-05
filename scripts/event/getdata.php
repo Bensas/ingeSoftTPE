@@ -2,13 +2,22 @@
     session_start();
 
     include_once("../connection.php");
+    include_once("../session/userdata.php");
 
     $retObj = (object) [
         'status' => -1
     ];
 
+    if(getPrivilegeLevel() < PrivilegeLevels::ORGANIZER) {
+        $retObj->status = -2;
+        echo json_encode($retObj);
+        die();
+    }
+
     if ( ! empty( $_GET ) ) {
         if ( isset( $_GET['eventId'] ) ) {
+
+            $pdo = Connection::getConnection();
 
             $query = $pdo->prepare("SELECT e.title, e.description, e.ticketPrice, e.imgCover,
                 e.artistId, 

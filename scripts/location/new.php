@@ -9,6 +9,9 @@
     ];
 
     if ( isset( $_POST['name'] ) && isset( $_POST['addresstext'] ) && isset( $_POST['lat'] ) && isset( $_POST['lon'] ) && isset( $_SESSION['user_id'] ) ) {
+
+        $pdo = Connection::getConnection();
+        
         $query = $pdo->prepare("INSERT INTO locations (name, addresstext, lat, lon, addedby) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$_POST['name'], $_POST['addresstext'], $_POST['lat'], $_POST['lon'], $_SESSION['user_id']]);
 

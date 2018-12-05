@@ -39,7 +39,9 @@
             <!-- <span class="sr-only">(Actual)</span> -->
           </a>
         </li>
-        <li id="navitem_eventos" class="nav-item"><a class="nav-link" href="events.html">Eventos</a></li>
+        <li id="navitem_eventos" class="nav-item">
+          <a class="nav-link" href="events.html">Eventos</a>
+        </li>
       </ul>
 
       <!-- Right -->
@@ -77,6 +79,18 @@
             </span>
           </a>
         </li>
+        &nbsp;
+        <li class="nav-item logged-true priv-1" id="navitem_organizer">
+          <a
+            class="nav-link waves-effect border border-light rounded orange-text"
+            href="myevents.html"
+          >
+            <i class="fa fa-diamond"></i>
+            <span class="clearfix d-none d-inline-block">
+              Panel de Organizador
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -104,8 +118,7 @@
 
   $(".btn-logout").click(function() {
     window.location.href =
-      "scripts/session/logout.php?prev=" +
-      encodeURIComponent(getRelativeUrl());
+      "scripts/session/logout.php?prev=" + encodeURIComponent(getRelativeUrl());
   });
 
   $(function() {
@@ -115,6 +128,10 @@
         $("#user-name").html(resp.name.toUpperCase());
         $(".logged-true").show();
         $(".logged-false").hide();
+
+        if (resp.userType < 2) $(".priv-2").hide();
+        if (resp.userType < 1) $(".priv-1").hide();
+
         updateTicketCount();
       } else {
         $(".logged-true").hide();

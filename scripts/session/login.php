@@ -10,6 +10,8 @@
     if ( ! empty( $_POST ) ) {
         if ( isset( $_POST['mail'] ) && isset( $_POST['password'] ) ) {
 
+            $pdo = Connection::getConnection();
+
             $query = $pdo->prepare("SELECT id, password FROM users WHERE mail = ?");
             $query->execute([$_POST['mail']]);
             $row = $query->fetch(PDO::FETCH_ASSOC);

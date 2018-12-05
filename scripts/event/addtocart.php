@@ -10,6 +10,8 @@
     if ( ! empty( $_POST ) ) {
         if ( isset( $_POST['eventId'] ) && isset( $_POST['eventInstanceId'] ) && isset( $_POST['ticketAmount'] ) ) {
 
+            $pdo = Connection::getConnection();
+
             $eventId = $_POST['eventId'];
             $eventInstanceId = $_POST['eventInstanceId'];
             $ticketAmount = $_POST['ticketAmount'];

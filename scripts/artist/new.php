@@ -9,6 +9,9 @@
     ];
 
     if ( isset( $_POST['name'] ) && isset( $_SESSION['user_id'] ) ) {
+        
+        $pdo = Connection::getConnection();
+
         $query = $pdo->prepare("INSERT INTO artists (name, addedBy) VALUES (?, ?)");
         $query->execute([$_POST['name'], $_SESSION['user_id']]);
 

@@ -9,6 +9,8 @@
     if ( isset( $_POST['name'] ) && isset( $_POST['surname'] ) && isset( $_POST['mail'] ) && isset( $_POST['password'] ) ) {
         $confirmationKey = md5(microtime());
 
+        $pdo = Connection::getConnection();
+
         $query = $pdo->prepare("INSERT INTO users (name, surname, mail, password, confirmationKey) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$_POST['name'], $_POST['surname'], $_POST['mail'], password_hash($_POST['password'], PASSWORD_DEFAULT), $confirmationKey]);
 

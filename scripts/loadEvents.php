@@ -7,6 +7,8 @@
         'status' => -1
     ];
 
+    $pdo = Connection::getConnection();
+
     $query = $pdo->prepare("SELECT * FROM events 
                             JOIN locations
                             ON events.locationId = locations.iD");

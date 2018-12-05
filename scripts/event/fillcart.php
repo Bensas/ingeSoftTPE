@@ -7,6 +7,8 @@
         'status' => -1
     ];
 
+    $pdo = Connection::getConnection();
+
     $query = $pdo->prepare("SELECT 
         COUNT(s.id) as amount, 
         e.title, e.ticketPrice, e.imgCover, e.id as eventId, 

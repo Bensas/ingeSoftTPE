@@ -9,6 +9,8 @@
         ];
     } else {
 
+        $pdo = Connection::getConnection();
+
         $query = $pdo->prepare("SELECT name, usertype FROM users WHERE id = ?");
         $query->execute([$_SESSION['user_id']]);
         $row = $query->fetch(PDO::FETCH_ASSOC);
