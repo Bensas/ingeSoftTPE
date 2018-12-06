@@ -21,7 +21,7 @@
         INNER JOIN locations l on e.locationId = l.id
         INNER JOIN eventTypes t on e.eventType = t.id
         WHERE e.adminId = ?
-        ORDER BY eventId");
+        ORDER BY created DESC");
 
     $query->execute([$_SESSION['user_id']]);
     //$query->execute([2]);

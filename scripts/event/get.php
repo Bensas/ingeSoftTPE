@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include_once("./connection.php");
+    include_once("../connection.php");
 
     $retObj = (object) [
         'status' => -1
@@ -10,7 +10,7 @@
 
     $query = $pdo->prepare("SELECT events.*, locations.name FROM events 
                             JOIN locations
-                            ON events.locationId = locations.iD");
+                            ON events.locationId = locations.Id");
     $query->execute();
     $events = $query->fetchAll(PDO::FETCH_OBJ);
 

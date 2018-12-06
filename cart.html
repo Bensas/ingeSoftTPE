@@ -201,46 +201,46 @@
         var ticketDate = new Date(ticket.eventDate + " " + ticket.eventTime);
         return (
           `<tr>
-                                                                                        < th scope = "row" class="text-center align-middle" >
-                                                                                          <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                                                </th >
-                                                            
-                                                                                        <td>
-                                                                                          <img
-                                                                                            src="/img/events/` +
+                                                                                              < th scope = "row" class="text-center align-middle" >
+                                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                                      </th >
+                                                                  
+                                                                                              <td>
+                                                                                                <img
+                                                                                                  src="/img/events/` +
           ticket.eventId +
           `/` +
           ticket.imgCover +
           `"
-                                                                                            alt="thumbnail"
-                                                                                            class="img-thumbnail"
-                                                                                            style="width: 130px"
-                                                                                          />
-                                                                                        </td>
-                                                            
-                                                                                        <td class="no-space">
-                                                                                          <p><strong>` +
+                                                                                                  alt="thumbnail"
+                                                                                                  class="img-thumbnail"
+                                                                                                  style="width: 130px"
+                                                                                                />
+                                                                                              </td>
+                                                                  
+                                                                                              <td class="no-space">
+                                                                                                <p><strong>` +
           ticket.title +
           `</strong></p>
-                                                                                          <p>` +
-          formatDate(ticketDate) +
+                                                                                                <p>` +
+          englishToSpanishDateString(ticket.eventDate) +
           `, ` +
           formatTime(ticketDate) +
           `</p>
-                                                          <p>` +
+                                                                <p>` +
           ticket.locationName +
           `</p>
-                                                          <p>` +
+                                                                <p>` +
           ticket.locationAddress +
           `</p>
-                                                        </td>
-                                                                                        <td class="text-center">$` +
+                                                              </td>
+                                                                                              <td class="text-center">$` +
           ticket.ticketPrice +
           `</td>
-                                                                                        <td class="text-center">` +
+                                                                                              <td class="text-center">` +
           ticket.amount +
           `</td>
-                                                                                              </tr >`
+                                                                                                    </tr >`
         );
       }
 

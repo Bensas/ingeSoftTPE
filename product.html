@@ -204,15 +204,27 @@
                 <div id="divBuy">
                   <form>
                     <div class="row">
-                      <div class="col-6">Función:</div>
+                      <div class="col-6"><strong>Función:</strong></div>
                       <div class="col-6">
-                        <select id="eventInstances" style="width: 100%;">
+                        <!--<select id="eventInstances" style="width: 100%;">-->
+                          <div class="select" style="width: 100%;">
+                            <select
+                              class="select-text"
+                              required
+                              style="width: 100%;"
+                              id="eventInstances"
+                            >
+                              <option value="" disabled selected></option>
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar" style="width: 100%;"></span>
+                          </div>
                         </select>
                       </div>
                     </div>
 
                     <div class="row">
-                      <div class="col-6">Cantidad de entradas:</div>
+                      <div class="col-6"><strong>Cantidad de entradas:</strong></div>
                       <div class="col-6">
                         <input
                           type="number"
@@ -226,7 +238,7 @@
                       </div>
                     </div>
 
-                    <a id="btnAddToCart" class="btn btn-primary btn-md my-0 p">
+                    <a id="btnAddToCart" class="btn btn-primary btn-md ml-0 w-100">
                       Comprar <i class="fa fa-shopping-cart ml-1"></i>
                     </a>
                   </form>
@@ -497,12 +509,12 @@
             if (eventInstances[i].isFull == true)
               option = $("<option />")
                 .val(eventInstances[i].id)
-                .text(formatDate(date) + ", " + formatTime(date) + " (Agotada)")
+                .text(englishToSpanishDateString(eventInstances[i].date) + ", " + formatTime(date) + " (Agotada)")
                 .attr("disabled", "disabled");
             else {
               option = $("<option />")
                 .val(eventInstances[i].id)
-                .text(formatDate(date) + ", " + formatTime(date));
+                .text(englishToSpanishDateString(eventInstances[i].date) + ", " + formatTime(date));
               isEventFull = false;
             }
 
@@ -580,16 +592,16 @@
 
             $carousel.children(".carousel-inner").append(
               `
-                                                                                                                                                                                                                                                                                                                                    <div class="carousel-item">
-                                                                                                                                                                                                                                                                                                                                    <img
-                                                                                                                                                                                                                                                                                                                                    class="d-block w-100"
-                                                                                                                                                                                                                                                                                                                                    src="/img/events/` +
+<div class="carousel-item">
+<img
+class="d-block w-100"
+src="/img/events/` +
                 eventId +
                 `/` +
                 resp.images[i] +
                 `"
-                                                                                                                                                                                                                                                                                                                                    />
-                                                                                                                                                                                                                                                                                                                                    </div>`
+/>
+</div>`
             );
           }
 
@@ -604,17 +616,17 @@
 
             $carousel.children(".carousel-inner").append(
               `<div class="carousel-item">
-                                                                                                                                                                                                                                                                                  <div class="view">
-                                                                                                                                                                                                                                                                                    <!-- Video source -->
-                                                                                                                                                                                                                                                                          <video class="video-intro" autoplay loop muted>
-                                                                                                                                                                                                                                                                                      <source src="/img/events/` +
+                                                                                                                                                                                                                                                                                        <div class="view">
+                                                                                                                                                                                                                                                                                          <!-- Video source -->
+                                                                                                                                                                                                                                                                                <video class="video-intro" autoplay loop muted>
+                                                                                                                                                                                                                                                                                            <source src="/img/events/` +
                 eventId +
                 "/" +
                 resp.videos[i] +
                 `" />
-                                                                                                                                                                                                                                                                                    </video>
-                                                                                                                                                                                                                                                                                  </div>
-                                                                                                                                                                                                                                                                                </div>`
+                                                                                                                                                                                                                                                                                          </video>
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                      </div>`
             );
           }
 

@@ -216,7 +216,7 @@
                       <option value="" disabled selected></option>
                     </select>
                     <span class="select-highlight"></span>
-                    <span class="select-bar"></span>
+                    <span class="select-bar" style="width: 100%;"></span>
                     <label class="select-label">Tipo de evento</label>
                   </div>
                 </div>
@@ -864,7 +864,7 @@
           );
       });
 
-      $("form").on("submit", function(event) {
+      $("#eventForm").on("submit", function(event) {
         event.preventDefault();
         sendEvent();
       });

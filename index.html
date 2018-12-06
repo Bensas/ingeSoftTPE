@@ -19,22 +19,41 @@
     <link href="css/mdb.min.css" rel="stylesheet" />
     <!-- Your custom styles (optional) -->
     <link href="css/style.min.css" rel="stylesheet" />
+
     <style type="text/css">
       html,
       body,
       header,
       .carousel {
-        height: 60vh;
+        height: 100vh;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .fullscreen {
+        height: 100vh;
+      }
+
+      .landing-bottom {
+        height: 100vh;
       }
 
       @media (min-width: 800px) and (max-width: 850px) {
         .navbar:not(.top-nav-collapse) {
           background: #1c2331 !important;
         }
+      }
 
-        .card-show {
-          height: 100% !important;
-        }
+      .event-card-size {
+        height: 250px !important;
+        width: 350px !important;
+      }
+
+      .anchor {
+        padding-top: 80px;
+        margin-top: -80px;
       }
     </style>
 
@@ -137,367 +156,148 @@
     <div id="fragment_navbar"></div>
     <!-- Navbar -->
 
-    <!-- Carousel Wrapper -->
-    <div
-      id="carousel-example-1z"
-      class="carousel slide carousel-fade"
-      data-ride="carousel"
-    >
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li
-          data-target="#carousel-example-1z"
-          data-slide-to="0"
-          class="active"
-        ></li>
-        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-      </ol>
-      <!-- /.Indicators -->
+    <div id="tagHome" class="full-page-intro">
+      <!-- Carousel Wrapper -->
+      <div
+        id="carousel-img"
+        class="carousel slide carousel-fade"
+        data-ride="carousel"
+      >
+        <!-- Indicators -->
+        <ol id="carrouselInd" class="carousel-indicators"></ol>
+        <!-- /.Indicators -->
 
-      <!-- Slides -->
-      <div class="carousel-inner" role="listbox">
-        <!-- First slide -->
-        <div class="carousel-item active">
-          <div class="view">
-            <!-- Video source -->
-            <video class="video-intro" autoplay loop muted>
-              <source src="/img/conciertos/acdc.mp4" type="video/mp4" />
-            </video>
+        <!-- Slides -->
+        <div id="carrouselBody" class="carousel-inner" role="listbox"></div>
+        <!-- /.Slides -->
 
-            <!-- Mask & flexbox options -->
-            <div
-              class="mask rgba-black-light d-flex justify-content-center align-items-center"
-            >
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4"><strong>AC/DC</strong></h1>
-
-                <p><strong>11 y 12 de Enero - Estadio River Plate</strong></p>
-
-                <a
-                  href="/product.html?eventId=1"
-                  class="btn btn-outline-white btn-lg"
-                >
-                  <i class="fa fa-ticket ml-2" aria-hidden="true"></i> ¡Adquirí
-                  tus entradas!
-                </a>
-              </div>
-              <!-- Content -->
-            </div>
-            <!-- Mask & flexbox options -->
-          </div>
-        </div>
-        <!-- /First slide -->
-
-        <!-- Second slide -->
-        <div class="carousel-item">
-          <div class="view">
-            <!-- Video source -->
-            <video class="video-intro" autoplay loop muted>
-              <source src="/img/conciertos/blueman.mp4" type="video/mp4" />
-            </video>
-
-            <!-- Mask & flexbox options -->
-            <div
-              class="mask rgba-black-light d-flex justify-content-center align-items-center"
-            >
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4"><strong>Blue Man Group</strong></h1>
-
-                <p><strong>15 de Diciembre - Trillenium Casino</strong></p>
-
-                <a
-                  href="/product.html?eventId=1"
-                  class="btn btn-outline-white btn-lg"
-                >
-                  <i class="fa fa-ticket ml-2" aria-hidden="true"></i> ¡Adquirí
-                  tus entradas!
-                </a>
-              </div>
-              <!-- Content -->
-            </div>
-            <!-- Mask & flexbox options -->
-          </div>
-        </div>
-        <!-- /Second slide -->
-
-        <!-- Third slide -->
-        <div class="carousel-item">
-          <div class="view">
-            <div
-              class="view"
-              style="background-image: url('https://timedotcom.files.wordpress.com/2016/10/green-day-fan-performs-onstage-chicago-concert.jpg'); background-repeat: no-repeat; background-size: cover;"
-            ></div>
-
-            <!-- Mask & flexbox options -->
-            <div
-              class="mask rgba-black-light d-flex justify-content-center align-items-center"
-            >
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4"><strong>Green Day</strong></h1>
-
-                <p>
-                  <strong
-                    >10, 12 y 17 de Diciembre - Estadio Único de La
-                    Plata</strong
-                  >
-                </p>
-
-                <p class="mb-4 d-none d-md-block">
-                  <strong>¡Últimas localidades disponibles!</strong>
-                </p>
-
-                <a
-                  href="/product.html?eventId=1"
-                  class="btn btn-outline-white btn-lg"
-                >
-                  <i class="fa fa-ticket ml-2" aria-hidden="true"></i> ¡Adquirí
-                  tus entradas!
-                </a>
-              </div>
-              <!-- Content -->
-            </div>
-            <!-- Mask & flexbox options -->
-          </div>
-        </div>
-        <!-- /Third slide -->
+        <!-- Controls -->
+        <a
+          class="carousel-control-prev"
+          href="#carousel-img"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carousel-img"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+        <!-- /.Controls -->
       </div>
-      <!-- /.Slides -->
+      <!-- /.Carousel Wrapper -->
 
-      <!-- Controls -->
-      <a
-        class="carousel-control-prev"
-        href="#carousel-example-1z"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#carousel-example-1z"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Siguiente</span>
-      </a>
-      <!-- /.Controls -->
+      <!--
+        <div class="container">
+          <div class="row text-center">
+            <h3>Desliza hacia abajo para conocer todas nuestras ofertas</h3>
+          </div>
+        </div>
+      -->
+
+      <!--
+        <div class="container">
+          <section class="mt-5 wow fadeIn landing-bottom">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div
+                  class="card card-image z-depth-2 card-show event-card-size"
+                  style="background-image: url(/img/conciertos/toc.jpg);"
+                >
+                  <div
+                    class="text-white text-center rgba-black-strong py-4 px-5 event-card-size"
+                  >
+                    <div>
+                      <h5 class="pink-text">
+                        <i class="fa fa-calendar"></i> ¡Últimas funciones!
+                      </h5>
+                      <h3 class="card-title pt-2"><strong>TOC TOC</strong></h3>
+                      <p>Teatro San Martín</p>
+                      <a class="btn btn-pink"
+                        ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
+                        información</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4">
+                <div
+                  class="card card-image z-depth-2 card-show event-card-size"
+                  style="background-image: url(/img/conciertos/poli.jpg);"
+                >
+                  <div
+                    class="text-white text-center rgba-black-strong py-4 px-5 event-card-size"
+                  >
+                    <div>
+                      <h3 class="card-title pt-2">
+                        <strong>Él Mató a un Policía Motorizado</strong>
+                      </h3>
+                      <p>Teatro Coliseo</p>
+                      <a class="btn btn-pink"
+                        ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
+                        información</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4">
+                <div
+                  class="card card-image z-depth-2 card-show event-card-size"
+                  style="background-image: url(/img/conciertos/monamania.jpg);"
+                >
+                  <div
+                    class="text-white text-center rgba-black-strong py-4 px-5 event-card-size"
+                  >
+                    <div>
+                      <h5 class="pink-text">
+                        <i class="fa fa-clock-o"></i> Falta poco
+                      </h5>
+                      <h3 class="card-title pt-2"><strong>Monamanía</strong></h3>
+                      <p>Teatro Continental</p>
+                      <a class="btn btn-pink"
+                        ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
+                        información</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      -->
     </div>
-    <!-- /.Carousel Wrapper -->
 
     <!-- Main layout -->
     <main>
-      <div class="container">
-        <!-- Section: Main info -->
-        <section class="mt-5 wow fadeIn">
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/toc.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-calendar"></i> ¡Últimas funciones!
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>TOC TOC</strong></h3>
-                    <p>Teatro San Martín</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/poli.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h3 class="card-title pt-2">
-                      <strong>Él Mató a un Policía Motorizado</strong>
-                    </h3>
-                    <p>Teatro Coliseo</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/monamania.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-clock-o"></i> Falta poco
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>Monamanía</strong></h3>
-                    <p>Teatro Continental</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="mt-5 wow fadeIn">
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/toc.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-calendar"></i> ¡Últimas funciones!
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>TOC TOC</strong></h3>
-                    <p>Teatro San Martín</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/poli.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h3 class="card-title pt-2">
-                      <strong>Él Mató a un Policía Motorizado</strong>
-                    </h3>
-                    <p>Teatro Coliseo</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/monamania.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-clock-o"></i> Falta poco
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>Monamanía</strong></h3>
-                    <p>Teatro Continental</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="container fullscreen">
+        <!-- Section: Conciertos -->
+        <section id="tagConcerts" class="mt-1 wow fadeIn anchor">
+          <div class="row"><h5>Conciertos</h5></div>
+          <div class="row" id="listEvents-1"></div>
         </section>
 
-        <section class="mt-5 wow fadeIn">
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/toc.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-calendar"></i> ¡Últimas funciones!
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>TOC TOC</strong></h3>
-                    <p>Teatro San Martín</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- Section: Conciertos -->
+        <section id="tagPlays" class="mt-1 wow fadeIn anchor">
+          <div class="row"><h5>Teatro y espectáculos</h5></div>
+          <div class="row" id="listEvents-2"></div>
+        </section>
 
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/poli.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h3 class="card-title pt-2">
-                      <strong>Él Mató a un Policía Motorizado</strong>
-                    </h3>
-                    <p>Teatro Coliseo</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-              <div
-                class="card card-image z-depth-2 card-show"
-                style="background-image: url(/img/conciertos/monamania.jpg);"
-              >
-                <!-- Content -->
-                <div class="text-white text-center rgba-black-strong py-4 px-5">
-                  <div>
-                    <h5 class="pink-text">
-                      <i class="fa fa-clock-o"></i> Falta poco
-                    </h5>
-                    <h3 class="card-title pt-2"><strong>Monamanía</strong></h3>
-                    <p>Teatro Continental</p>
-                    <a class="btn btn-pink"
-                      ><i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más
-                      información</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- Section: Conciertos -->
+        <section id="tagSports" class="mt-1 wow fadeIn anchor">
+          <div class="row"><h5>Eventos deportivos</h5></div>
+          <div class="row" id="listEvents-3"></div>
         </section>
       </div>
     </main>
@@ -515,6 +315,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+
     <!-- Initializations -->
     <script type="text/javascript">
       // Animations initialization
@@ -522,16 +323,184 @@
     </script>
 
     <script>
+      var eventCardHTML =
+        '\
+      <div class="col-12 col-sm-6 col-md-4 p-3">\
+        <div class="card card-image z-depth-2 event-card-size"\
+          style="background-image: url(/img/events/{eventId}/{eventImg});background-size: cover;">\
+          <!-- Content -->\
+          <div class="text-white text-center rgba-black-strong py-4 px-5 event-card-size">\
+            <h3 class="card-title pt-2"><strong>{eventTitle}</strong></h3>\
+            <p>{eventLocation}</p>\
+            <a class="btn btn-pink" href="product.html?eventId={eventId}">\
+              <i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más información\
+            </a>\
+          </div>\
+        </div>\
+      </div>\
+      ';
+
+      function generateEventCard(event) {
+        var ret = eventCardHTML
+          .replace(/{eventId}/g, event.Id)
+          .replace(/{eventImg}/, event.imgcover)
+          .replace(/{eventTitle}/, event.title)
+          .replace(/{eventLocation}/, event.name);
+        return ret;
+      }
+
       $(function() {
         $("#fragment_navbar").load("/fragments/navbar.html", function() {
           $("#navbar").removeClass("bg-dark");
           $("#navitem_inicio").addClass("active");
-          $("#navitem_inicio")
-            .children("a")
-            .attr("href", "#");
-          $("#navbar_title").attr("href", "#");
+
+          $("#navbar_title").bind("click", false);
+
+          $("#navbar")
+            .find("a.index-anchor")
+            .each(function() {
+              var $this = $(this);
+              $this.attr("href", $this.attr("href").replace("index.html", ""));
+            });
+        });
+
+        $.get("/scripts/event/getfeaturedevents.php", function(data) {
+          try {
+            var resp = JSON.parse(data);
+          } catch (err) {
+            document.write(data);
+          }
+          if (resp.status == 0) {
+            $carousel = $("#carousel-img");
+            for (var i = 0; i < resp.events.length; i++) {
+              $carousel
+                .children(".carousel-indicators")
+                .append(
+                  "<li data-target='#carousel-img' data-slide-to='" + i + "' />"
+                );
+
+              $carousel
+                .children(".carousel-inner")
+                .append(getCarrouselPage(resp.events[i]));
+            }
+
+            $carousel
+              .children(".carousel-indicators")
+              .children("li")
+              .first()
+              .addClass("active");
+
+            $carousel
+              .children(".carousel-inner")
+              .children(".carousel-item")
+              .first()
+              .addClass("active");
+          } else {
+            alert(
+              "Hubo un problema al cargar los eventos. Por favor, contacte al administrador."
+            );
+          }
+        });
+
+        $.get("/scripts/event/get.php", function(data) {
+          try {
+            var resp = JSON.parse(data);
+          } catch (err) {
+            document.write(data);
+          }
+          if (resp.status == 0) {
+            for (var i = 0; i < resp.events.length; i++) {
+              //for (var j = 0; j < 10; j++)
+              $("#listEvents-" + resp.events[i].eventType).append(
+                generateEventCard(resp.events[i])
+              );
+            }
+          } else {
+            alert(
+              "Hubo un problema al cargar los eventos. Por favor, contacte al administrador."
+            );
+          }
         });
       });
+
+      function getCarrouselPage(data) {
+        var videoHTML =
+          '<div class="carousel-item">\
+                      <div class="view">\
+                        <video class="video-intro" autoplay loop muted>\
+                          <source src="{frontFile}" type="video/mp4" />\
+                        </video>\
+                        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">\
+                          <div class="text-center white-text mx-5 wow fadeIn">\
+                            <h1 class="mb-4"><strong>{title}</strong></h1>\
+                            <p><strong>{desc}</strong></p>\
+                            <a href="/product.html?eventId={eventId}" class="btn btn-outline-white btn-lg hoverable">\
+                              <i class="fa fa-ticket ml-2" aria-hidden="true"></i>\
+                              ¡Adquirí tus entradas!\
+                            </a>\
+                          </div >\
+                        </div >\
+                      </div >\
+                    </div >';
+
+        var imageHTML =
+          '<div class="carousel-item">\
+                      <div class="view" style="background-image: url(\'{frontFile}\'); background-repeat: no-repeat; background-size: cover;">\
+                        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">\
+                          <div class="text-center white-text mx-5 wow fadeIn">\
+                            <h1 class="mb-4"><strong>{title}</strong></h1>\
+                            <p><strong>{desc}</strong></p>\
+                            <a href="/product.html?eventId={eventId}" class="btn btn-outline-white btn-lg hoverable">\
+                              <i class="fa fa-ticket ml-2" aria-hidden="true"></i>\
+                              ¡Adquirí tus entradas!\
+                            </a>\
+                          </div >\
+                        </div >\
+                      </div >\
+                    </div >';
+
+        var html;
+        if (data.isFrontVideo == 1) html = videoHTML;
+        else html = imageHTML;
+
+        return html
+          .replace("{eventId}", data.eventId)
+          .replace(
+            "{frontFile}",
+            "/img/events/" + data.eventId + "/" + data.frontFile
+          )
+          .replace("{title}", data.title)
+          .replace("{desc}", data.desc);
+      }
+
+      $(document).on("scroll", onScroll);
+
+      function onScroll(event) {
+        var scrollPos = $(document).scrollTop();
+        $("#navbar-nav a.index-anchor").each(function() {
+          var currLink = $(this);
+          var refElement = $(currLink.attr("href"));
+
+          if (
+            refElement.position().top <= scrollPos &&
+            refElement.position().top + refElement.height() > scrollPos
+          ) {
+            /*$("#navbar-nav")
+              .find("a.index-anchor")
+              .each(function() {
+                alert($(this).attr("href"));
+              });*/
+
+            $("#navbar-nav")
+              .find("a.index-anchor")
+              .parent()
+              .removeClass("active");
+            currLink.parent().addClass("active");
+          } else {
+            currLink.parent().removeClass("active");
+          }
+        });
+      }
     </script>
   </body>
 </html>
