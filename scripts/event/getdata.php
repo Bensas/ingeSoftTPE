@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)) session_start();
 
     include_once("../connection.php");
     include_once("../session/userdata.php");

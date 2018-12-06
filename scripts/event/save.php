@@ -2,7 +2,7 @@
 
     //TODO: COMPROBACIONES DE SEGURIDAD, ARCHIVOS PERMITIDOS, TAMAÑOS, Y PRIVILEGIOS, TANTO EN PHP COMO EN JAVASCRIPT
 
-    session_start();
+    if(!isset($_SESSION)) session_start();
 
     include_once("../connection.php");
     include_once("../session/userdata.php");

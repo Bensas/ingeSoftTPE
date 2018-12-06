@@ -2,7 +2,7 @@
 
     include_once("../connection.php");
 
-    session_start();
+    if(!isset($_SESSION)) session_start();
 
     $retObj = (object) [
         'status' => -1

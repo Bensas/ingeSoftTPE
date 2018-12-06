@@ -16,7 +16,7 @@
 
         sendConfirmationEmail($_POST['mail'], $confirmationKey);
 
-        session_start();
+        if(!isset($_SESSION)) session_start();
 
         $_SESSION['user_id'] = $pdo->lastInsertId();
 
